@@ -1,0 +1,140 @@
+
+/*    MAIN BODY ELEMENTS */
+body {
+    display: flex;
+    justify-content: center;
+    background-color: darkorchid;
+}
+
+main {
+    width: 90%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: darkseagreen;
+}
+
+main h1 {
+    font-size: 5em;
+}
+
+/*    INVENTORY AND LEFT AND RIGHT HAND */
+.taskBar {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: firebrick;
+}
+
+.inventory {
+    width: 60%;
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: gray;
+}
+
+.inventoryDropBox {
+    width: 95%;
+    height: 150px;
+    background-color: white;
+}
+
+.leftHand {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: indigo;
+}
+
+.leftHandDropBox {
+    width: 95%;
+    height: 75px;
+    background-color: white;
+}
+
+.rightHand {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightblue;
+}
+
+.rightHandDropBox {
+    width: 95%;
+    height: 75px;
+    background-color: white;
+}
+
+/*    THE GAMEBOARD AND THE DROPPABLES */
+.boardGame {
+    width: 100%;
+    height: 500px;
+    background-color: forestgreen;
+}
+
+.boardForImg {
+    max-width: 775px;
+    height: 500px;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+.boardForDrops {
+    max-width: 775px;
+    height: 500px;
+}
+
+/*    DIALOG AND OTHER USEFUL THINGS */
+.bottomTask {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    background-color: gold;
+}
+
+.pageButtons {
+    width: 15%;
+    height: 175px;
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: lightcoral;
+}
+
+#nextButton {
+    height: 50px;
+}
+
+.dialog {
+    width: 60%;
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightseagreen;
+}
+
+.dialogBox {
+    width: 95%;
+    height: 150px;
+    overflow: scroll;
+    background-color: white;
+    font-size: 1.2em;
+}
+
+.notebook {
+    display: none;
+    width: 25%;
+    height: 175px;
+    overflow: scroll;
+    background-color: purple;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>BOILERPLATE</title>
+        <link rel="stylesheet" href="./assets/stylesheets/reset.css">
+        <link rel="stylesheet" href="./assets/stylesheets/style.css">
+    </head>
+    <body>
+        <main>
+            <h1>The Game</h1>
+            <button id="startButton">Start</button>
+            <div class="taskBar">
+                <div class="inventory">
+                    Inventory
+                    <div class="inventoryDropBox" ondrop="dropItem(event)" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+                <div class="leftHand">
+                    Left Hand
+                    <div class="leftHandDropBox" ondrop="dropItem(event)" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+                <div class="rightHand">
+                    Left Hand
+                    <div class="rightHandDropBox" ondrop="dropItem(event)" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+            </div>
+            <div class="boardGame">
+                <div class="boardForImg">
+                    <div class="boardForDrops">
+                    </div>
+                </div>
+            </div>
+            <div class="bottomTask">
+                <div class="pageButtons"></div>
+                <div class="dialog">
+                    <div class="dialogBox"></div>
+                </div>
+                <div class="notebook"></div>
+            </div>
+        </main>
+        <script type="text/javascript" src="./assets/javascript/app.js"></script>
+    </body>
+</html>
