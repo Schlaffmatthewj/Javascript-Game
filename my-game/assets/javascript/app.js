@@ -21,6 +21,10 @@ const board4Drops = document.querySelector('boardForDrops');
 
 //  THE BOTTOM TASK BAR
 const pageButtonsDiv = document.querySelector('.pageButtons');
+const nextButton = document.createElement('button');
+nextButton.setAttribute('id', 'nextButton');
+nextButton.innerText = "Next";
+
 const dialogBoxDiv = document.querySelector('.dialogBox');
 const notebookDiv = document.querySelector('.notebook');
 
@@ -39,23 +43,44 @@ function chapterOne() {
         setTimeout(() => {
             currentText = dialogBoxDiv.innerText;
             dialogBoxDiv.innerHTML = currentText + '<br><br>' + "This dialog box is essential to the process of the game, so will be the buttons to the left of this box.";
-        }, 8000);
+        }, 6000);
         setTimeout(() => {
             currentText = dialogBoxDiv.innerText;
             dialogBoxDiv.innerHTML = currentText + '<br><br>' + "Click the Next button to procede with the intro.";
-            const nextButton = document.createElement('button');
-            nextButton.setAttribute('id', 'nextButton');
-            nextButton.innerText = "Next";
             pageButtonsDiv.appendChild(nextButton);
-        }, 12000);
+        }, 10000);
     }, 2000);
-    const nextButton = document.querySelector('#nextButton');
     nextButton.addEventListener('click', (event) => {
+        function pageOne () {
+            board4Img.style.backgroundImage = "url('./assets/imgs/old-letter.jpg')";
+            setTimeout(() => {
+                let response = window.confirm();
+                if (response) {
+                    currentText = dialogBoxDiv.innerText;
+                        dialogBoxDiv.innerHTML = currentText + '<br><br>' + "We'd pack carefully, We can only take so many things";
+                } else {
+                    let response = window.confirm();
+                    if (response) {
+                        currentText = dialogBoxDiv.innerText;
+                        dialogBoxDiv.innerHTML = currentText + '<br><br>' + "That is more like it! Lets pack for the trip.";
+                    } else {
+                        currentText = dialogBoxDiv.innerText;
+                        dialogBoxDiv.innerHTML = currentText + '<br><br>' + "You don't actually have a choice in the matter. Why did you even click play? Press Next";
+                    }
+                }
+            }, 5000)
+            currentText = dialogBoxDiv.innerText;
+            dialogBoxDiv.innerHTML = currentText + '<br><br>' + "You are now going to your office and can only bring three of these items with you on the trip.";
+        }
+        pageOne();
         
-    })
-    
-    // office inventory selection scene
-    // board4Img.style.backgroundImage = "url('./assets/imgs/the-office.jpeg')";
+        function pageTwo() {
+            board4Img.style.backgroundImage = "url('./assets/imgs/the-office.jpeg')";
+            currentText = dialogBoxDiv.innerText;
+            dialogBoxDiv.innerHTML = currentText + '<br><br>' + "Drag ONLY three items from this office into your inventory box. You will never have access to the items left behind again!";
+        }
+        pageTwo();
+    });
 }
 
 
