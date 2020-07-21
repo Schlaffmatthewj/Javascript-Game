@@ -42,6 +42,9 @@ main h1 {
     width: 95%;
     height: 150px;
     background-color: white;
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
 }
 
 .leftHand {
@@ -86,11 +89,96 @@ main h1 {
     height: 500px;
     background-size: cover;
     margin: 0 auto;
+    z-index: -1;
 }
 
 .boardForDrops {
     max-width: 775px;
     height: 500px;
+    position: relative;
+    z-index: 0;
+}
+
+.items {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    display: none;
+}
+
+#magGlass {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/mag-glass.png');
+    background-size: contain;
+    background-position: center;
+    top: 40px;
+    left: 60px;
+}
+
+#notebook {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/notebook.png');
+    background-size: contain;
+    background-position: center;
+    top: 200px;
+}
+
+#lighter {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/zippo.png');
+    background-size: contain;
+    background-position: center;
+    bottom: 100px;
+}
+
+#luckyCoin {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/lucky-coin.png');
+    background-size: contain;
+    background-position: center;
+    right: 0;
+    top: 190px;
+}
+
+#gun {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/gun.png');
+    background-size: contain;
+    background-position: center;
+    right: 220px;
+    top: 70px;
+}
+
+#glasses {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/glasses.png');
+    background-size: contain;
+    background-position: center;
+    right: 280px;
+    bottom: 160px;
+
+}
+
+#apple {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/apple.png');
+    background-size: contain;
+    bottom: 120px;
+    left: 140px;
 }
 
 /*    DIALOG AND OTHER USEFUL THINGS */
@@ -106,11 +194,12 @@ main h1 {
     width: 15%;
     height: 175px;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
+    justify-content: right;
     background-color: lightcoral;
 }
 
-#nextButton {
+.buttons {
     height: 50px;
 }
 
