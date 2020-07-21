@@ -181,6 +181,58 @@ main h1 {
     left: 140px;
 }
 
+.person {
+    width: 100px;
+    height: 200px;
+    position: absolute;
+    display: none;
+}
+
+#scientist {
+    width: 100px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/scientist.png');
+    background-size: contain;
+    background-position: center;
+    bottom: 0;
+    right: 125px;
+}
+
+#mercenary {
+    width: 100px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/mercenary.png');
+    background-size: contain;
+    background-position: center;
+    left: 25px;
+    top: 20px;
+}
+
+.outsideCave {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    display: none;
+}
+
+#rock {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/rock.png');
+    background-size: contain;
+}
+
+#torch {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/torch.png');
+    background-size: contain;
+}
+
 /*    DIALOG AND OTHER USEFUL THINGS */
 .bottomTask {
     width: 100%;
@@ -224,6 +276,13 @@ main h1 {
     display: none;
     width: 25%;
     height: 175px;
-    overflow: scroll;
     background-color: purple;
+}
+
+.notebookBox {
+    width: 95%;
+    height: 150px;
+    overflow: scroll;
+    background-color: white;
+    font-size: 1.2em;
 }

@@ -13,36 +13,44 @@
             <div class="taskBar">
                 <div class="inventory">
                     Inventory
-                    <div class="inventoryDropBox dropzone" ondrop="dropItem(event)" ondragover="allowDrop(event)">
+                    <div class="inventoryDropBox dropzone">
                     </div>
                 </div>
                 <div class="leftHand">
                     Left Hand
-                    <div class="leftHandDropBox dropzone" ondrop="dropItem(event)" ondragover="allowDrop(event)">
+                    <div class="leftHandDropBox dropzone">
                     </div>
                 </div>
                 <div class="rightHand">
                     Left Hand
-                    <div class="rightHandDropBox dropzone" ondrop="dropItem(event)" ondragover="allowDrop(event)">
+                    <div class="rightHandDropBox dropzone">
                     </div>
                 </div>
             </div>
             <div class="boardGame">
                 <div class="boardForImg">
                     <div class="boardForDrops">
-                        <div id="magGlass" class="items" draggable="true">
+                        <div id="magGlass" class="items">
                         </div>
-                        <div id="notebook" class="items" draggable="true">
+                        <div id="notebook" class="items">
                         </div>
-                        <div id="lighter" class="items" draggable="true">
+                        <div id="lighter" class="items">
                         </div>
-                        <div id="luckyCoin" class="items" draggable="true">
+                        <div id="luckyCoin" class="items">
                         </div>
-                        <div id="gun" class="items" draggable="true">
+                        <div id="gun" class="items">
                         </div>
-                        <div id="glasses" class="items" draggable="true">
+                        <div id="glasses" class="items">
                         </div>
-                        <div id="apple" class="items" draggable="true">
+                        <div id="apple" class="items">
+                        </div>
+                        <div id="scientist" class="person">
+                        </div>
+                        <div id="mercenary" class="person">
+                        </div>
+                        <div id="rock" class="outsideCave">
+                        </div>
+                        <div id="torch" class="outsideCave">
                         </div>
                     </div>
                 </div>
@@ -52,7 +60,9 @@
                 <div class="dialog">
                     <div class="dialogBox"></div>
                 </div>
-                <div class="notebook"></div>
+                <div class="notebook">
+                    <textarea name="message" class="notebookBox" onkeyup="secretCounter(this);"></textarea>
+                </div>
             </div>
         </main>
         <script type="text/javascript" src="./assets/javascript/app.js"></script>
