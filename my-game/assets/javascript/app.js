@@ -1,8 +1,16 @@
 
 
+///////
+/// MY ALERT AND TIMING IS OFF FOR TESTING
+///////
+// ADD THE SPECIAL PROPERTIES TO THE NOTEBOOK IF ACTIVE
+
+// inventory.hasOwnProperty("magnifyingGlass")
+
 //          THE GLOBAL VARIABLES
 let inventory = {};
 let health = 100;
+let currentText = '';
 //          THE DOM ELEMENTS
 //  THE START BUTTON
 const startButton = document.querySelector('#startButton');
@@ -39,7 +47,7 @@ let office = {magnifyingGlass, notebook, lighter, luckyCoin, gun, glasses, apple
 //  THE CAVE ITEMS
 const torch = document.querySelector('#torch');
 const shinyRock = document.querySelector('#rock');
-let caveItems = {torch, shinyRock};
+let caveItems = {torch: torch, rock: shinyRock};
 
 //  THE CHARACTERS
 const scientist = document.querySelector('#scientist');
@@ -60,7 +68,7 @@ function chapterOne() {
     function pageOne() {
         board4Img.style.backgroundImage = "url('./assets/imgs/first-morning.jpeg')";
         setTimeout(() => {
-            alert("Look for all messages to appear in the 'Dialog' box at the bottom of the screen");
+            // alert("Look for all messages to appear in the 'Dialog' box at the bottom of the screen");
             dialogBoxDiv.innerText = '\nLook for all messages to appear in the THIS box at the bottom of the screen.';
             setTimeout(() => {
                 let currentText = dialogBoxDiv.innerText;
@@ -195,6 +203,7 @@ function chapterOne() {
 
 function chapterTwo() {
     document.removeEventListener('keydown', officeInvent);
+    let currentText = dialogBoxDiv.innerText;
     for (let item in office) {
         if (office[item]) {
             office[item].style.display = "none";
@@ -205,6 +214,10 @@ function chapterTwo() {
             // console.log('YOU HAVE A NOTEBOOK');
             notebookDiv.style.display = "inline-block";
         }
+        if (inventory[items] === magnifyingGlass) {
+            currentText = dialogBoxDiv.innerText
+            dialogBoxDiv.innerText = currentText + "\n\nMagnifying Glass: Try talking to these two people, one of them has an offer for you.";
+        }
     }
     const chapterTwoBtn = document.querySelector('#chapterTwo');
     chapterTwoBtn.removeEventListener('click', chapterTwo);
@@ -212,16 +225,59 @@ function chapterTwo() {
     pageButtonsDiv.innerHTML = '';
     board4Img.style.backgroundImage = "url('./assets/imgs/traveling.jpeg')";
     dialogBoxDiv.innerText = "\nWow! Antartica has really been melting a lot. There must be more than just this new discovery here.";
-    let currentText = dialogBoxDiv.innerText;
+    currentText = dialogBoxDiv.innerText;
     setTimeout(() => {
-        twoPageTwo();
+        twoPageOne();
     }, 600);
-    function twoPageTwo() {
+    function twoPageOne() {
         board4Img.style.backgroundImage = "url('./assets/imgs/cave-morning.jpeg')";
         for (let person in people) {
             people[person].style.display = "inline-block";
             people[person].addEventListener('click', caveConvo);
         }
+        function returnFromConvo() {
+            let currentText = dialogBoxDiv.innerText
+            // console.log(inventory.hasOwnProperty("rock"));
+            setTimeout(() => {
+                if (inventory.hasOwnProperty("rock")) {
+                    currentText = dialogBoxDiv.innerText
+                    dialogBoxDiv.innerText = currentText + "\n\nHmmmm... This rock is rather interesting. It seems to have special properties to it.";
+                    dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                }
+            }, 1000);
+        }
+        chapterTwo.returnFromConvo = returnFromConvo;
+        setTimeout(() => {
+            for (let items in inventory) {
+                if (inventory[items] === glasses && shinyRock) {
+                    currentText = dialogBoxDiv.innerText
+                    dialogBoxDiv.innerText = currentText + "\nGlasses: I defintely made the right choice. It seems to be missing a piece though. \nGlasses: I wonder where Dr. otherGuy was?";
+                    dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                } else if (inventory[items] === glasses) {
+                    currentText = dialogBoxDiv.innerText
+                    dialogBoxDiv.innerText = currentText + "\nGlasses: I wonder where Dr. otherGuy was?";
+                    dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                }
+            }
+            const twoPageTwo = document.createElement('button');
+            twoPageTwo.setAttribute('class', 'buttons');
+            twoPageTwo.setAttribute('id', 'buttonTwo');
+            twoPageTwo.innerText = 'Page: 2';
+            twoPageTwo.addEventListener('click', twoPageThree);
+            pageButtonsDiv.appendChild(twoPageTwo);
+        }, 10000);
+    }
+    function twoPageThree() {
+        board4Img.style.backgroundImage = "url('./assets/imgs/the-entrance.jpeg')";
+        let twoPageTwo = document.querySelector('#buttonTwo');
+        twoPageTwo.removeEventListener('click', twoPageThree);
+        for (let person in people) {
+            people[person].style.display = "none";
+            people[person].removeEventListener('click', caveConvo);
+        }
+        setTimeout(() => {
+
+        })
     }
 }
 
@@ -255,47 +311,40 @@ function caveConvo(event) {
                     inventory[item] = caveItems[item];
                     caveItems[item] = null;
                     inventoryDiv.appendChild(torch);
-                    return inventory;
                 } else {
-                    return;
                 }
             }
-
-            ////   HAVING TROUBLE FINDING THE GUN THE WHOLE TIME!!!
         } else if (event.target === mercenary) {
+            currentText = dialogBoxDiv.innerText
             dialogBoxDiv.innerText = currentText + "\n\nMERCENARY: Dr. otherGuy said you'd be showing up today.\n Don't worry about me, I'm just the hired help.";
             dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-            for (let items in inventory) {
-                if (inventory[items] === gun) {
-                    dialogBoxDiv.innerText = currentText + "\n\nMERCENARY: HEY!! Is that an old revolver? Would you like to trade for this shiny rock?";
-                    dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                    setTimeout(() => {
-                        let confirm = window.confirm("TRADE: Gun for a shiny rock?");
-                        if (confirm) {
-                            if (shinyRock) {
-                                ///   DOUBLE CHECK THIS SCENARIO
-                                shinyRock.style.display = "inline-block";
-                                shinyRock.style.position = "static";
-                                inventory[items] = shinyRock;
-                                inventoryDiv.appendChild(shinyRock);
-                                inventoryDiv.removeChild(gun);
-                                return inventory;
-                            } else {
-                                return;
-                            }
-                        } else {
-                            dialogBoxDiv.innerText = currentText + "\n\nMERCENARY: Whatever. Your loss anyways.";
-                            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                            return;
-                        }
-                    }, 500);
-                } else {
-                    return;
-                }
+            if (inventory.hasOwnProperty("gun")) {
+                currentText = dialogBoxDiv.innerText
+                dialogBoxDiv.innerText = currentText + "\n\nMERCENARY: HEY!! Is that an old revolver? Would you like to trade for this shiny rock?";
+                dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                setTimeout(() => {
+                    let confirm = window.confirm("TRADE: Gun for a shiny rock?");
+                    if (confirm) {
+                        shinyRock.style.display = "inline-block";
+                        shinyRock.style.position = "static";
+                        inventory.rock = shinyRock;
+                        inventoryDiv.appendChild(shinyRock);
+                        inventoryDiv.removeChild(gun);
+                        delete inventory.gun;
+                    } else {
+                        currentText = dialogBoxDiv.innerText
+                        dialogBoxDiv.innerText = currentText + "\n\nMERCENARY: Whatever. Your loss anyways.";
+                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                    }
+                }, 500);
             }
         }
     }
-    console.log(inventory);
+            ////   HAVING TROUBLE ADDING TWO BUTTONS
+    ///    THIS IS MY PROBLEM \/\/\/\/\/
+    setTimeout(() => {
+        return currentText, chapterTwo.returnFromConvo();
+    }, 10000);
 }
 
 
@@ -308,3 +357,4 @@ function secretCounter(obj) {
         obj.value = oldText +" \nOLD NOTES!!\nHINT: You shouldn't have brought the gun.";
     }
 }
+
