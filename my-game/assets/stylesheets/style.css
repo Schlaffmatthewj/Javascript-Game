@@ -22,7 +22,7 @@ main h1 {
 /*    INVENTORY AND LEFT AND RIGHT HAND */
 .taskBar {
     width: 100%;
-    height: 200px;
+    height: 225px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -31,50 +31,38 @@ main h1 {
 
 .inventory {
     width: 60%;
-    height: 175px;
+    height: 95%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-color: gray;
 }
 
 .inventoryDropBox {
     width: 95%;
-    height: 150px;
+    height: 90%;
     background-color: white;
     display: flex;
     position: relative;
     flex-wrap: wrap;
 }
 
-.leftHand {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
+.notebook {
+    display: none;
+    justify-content: center;
     align-items: center;
-    background-color: indigo;
+    width: 55%;
+    height: 95%;
+    background-color: purple;
 }
 
-.leftHandDropBox {
+.notebookBox {
     width: 95%;
-    height: 75px;
+    height: 90%;
+    overflow: scroll;
     background-color: white;
-}
-
-.rightHand {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: lightblue;
-}
-
-.rightHandDropBox {
-    width: 95%;
-    height: 75px;
-    background-color: white;
+    font-size: 1.2em;
 }
 
 /*    THE GAMEBOARD AND THE DROPPABLES */
@@ -88,6 +76,7 @@ main h1 {
     max-width: 775px;
     height: 500px;
     background-size: cover;
+    background-position: center;
     margin: 0 auto;
     z-index: -1;
 }
@@ -233,12 +222,40 @@ main h1 {
     background-size: contain;
 }
 
+.firstFloor {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    display: none;
+}
+
+#water {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/water-cup.png');
+    background-size: contain;
+    bottom: 40%;
+    right: 45%;
+}
+
+#emptyWater {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    left: 45%;
+    top: 37%;
+}
+
+
 /*    DIALOG AND OTHER USEFUL THINGS */
 .bottomTask {
     width: 100%;
     height: 200px;
     display: flex;
     align-items: center;
+    justify-content: space-around;
     background-color: gold;
 }
 
@@ -256,7 +273,7 @@ main h1 {
 }
 
 .dialog {
-    width: 60%;
+    width: 80%;
     height: 175px;
     display: flex;
     justify-content: center;
@@ -272,17 +289,3 @@ main h1 {
     font-size: 1.2em;
 }
 
-.notebook {
-    display: none;
-    width: 25%;
-    height: 175px;
-    background-color: purple;
-}
-
-.notebookBox {
-    width: 95%;
-    height: 150px;
-    overflow: scroll;
-    background-color: white;
-    font-size: 1.2em;
-}

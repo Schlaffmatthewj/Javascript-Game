@@ -8,23 +8,15 @@
     </head>
     <body>
         <main>
-            <h1>The Game</h1>
+            <h1>New Adventures</h1>
             <button id="startButton">Start</button>
             <div class="taskBar">
                 <div class="inventory">
-                    Inventory
                     <div class="inventoryDropBox dropzone">
                     </div>
                 </div>
-                <div class="leftHand">
-                    Left Hand
-                    <div class="leftHandDropBox dropzone">
-                    </div>
-                </div>
-                <div class="rightHand">
-                    Left Hand
-                    <div class="rightHandDropBox dropzone">
-                    </div>
+                <div class="notebook">
+                    <textarea name="message" class="notebookBox" onkeyup="secretCounter(this);"></textarea>
                 </div>
             </div>
             <div class="boardGame">
@@ -52,6 +44,10 @@
                         </div>
                         <div id="torch" class="outsideCave">
                         </div>
+                        <div id="water" class="firstFloor">
+                        </div>
+                        <div id="emptyWater" class="firstFloor">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,9 +55,6 @@
                 <div class="pageButtons"></div>
                 <div class="dialog">
                     <div class="dialogBox"></div>
-                </div>
-                <div class="notebook">
-                    <textarea name="message" class="notebookBox" onkeyup="secretCounter(this);"></textarea>
                 </div>
             </div>
         </main>
