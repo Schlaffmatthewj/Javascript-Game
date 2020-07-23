@@ -74,21 +74,15 @@ function chapterOne() {
         board4Img.style.backgroundImage = "url('./assets/imgs/first-morning.jpeg')";
         setTimeout(() => {
             // alert("Look for all messages to appear in the 'Dialog' box at the bottom of the screen");
-            dialogBoxDiv.innerText = '\nLook for all messages to appear in the THIS box at the bottom of the screen.';
+            dialogConvo.log1();
             setTimeout(() => {
-                let currentText = dialogBoxDiv.innerText;
-                dialogBoxDiv.innerText = currentText + "\n\nGood Morning, Today is like no other and you are about to find out why!";
-                dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                dialogConvo.log2();
             }, 100);
             setTimeout(() => {
-                currentText = dialogBoxDiv.innerText;
-                dialogBoxDiv.innerText = currentText + "\n\nThis dialog box is essential to the process of the game, so will be the buttons to the left of this box.";
-                dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                dialogConvo.log3();
             }, 600);
             setTimeout(() => {
-                currentText = dialogBoxDiv.innerText;
-                dialogBoxDiv.innerText = currentText + "\n\nClick the Page: 2 button to procede with the intro.";
-                dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                dialogConvo.log4();
                 pageButtonsDiv.appendChild(pageTwoBtn);
             }, 1000);
         }, 300);
@@ -103,12 +97,10 @@ function chapterOne() {
         pageTwoBtn.removeEventListener('click', pageTwo);
         board4Img.style.backgroundImage = "url('./assets/imgs/old-letter.jpg')";
         setTimeout(() => {
-            dialogBoxDiv.innerText = "\nYou're ego decides for you that you must go to this new mysterious island";    
+            dialogConvo.log5();
         }, 800);
         setTimeout(() => {
-            currentText = dialogBoxDiv.innerText;
-            dialogBoxDiv.innerText = currentText + "\n\nYou are now going to your office and can only bring three of these items with you on the trip. Flip to Page: 3";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log6();
             pageButtonsDiv.appendChild(pageThreeBtn);
         }, 1000);
         dialogBoxDiv.innerText = '';
@@ -120,9 +112,8 @@ function chapterOne() {
     chapterTwoBtn.addEventListener('click', chapterTwo);
     function pageThree() {
         pageThreeBtn.removeEventListener('click', pageThree);
-        currentText = dialogBoxDiv.innerText;
         board4Img.style.backgroundImage = "url('./assets/imgs/the-office.jpeg')";
-        dialogBoxDiv.innerText = "\nONLY three items from this office can be put into your inventory box. You will never have access to the items left behind again!";
+        dialogConvo.log7();
         for (let item in office) {
             // console.log(office[item]);
             office[item].style.display = "inline-block";
@@ -130,39 +121,19 @@ function chapterOne() {
                 //  TRY TO PREVENT DOUBLE CLICKS ON THIS FUNCTION
                 if (e.detail === 1) {
                     if (office[item] === magnifyingGlass) {
-                        dialogBoxDiv.innerText = currentText + "\nMagnifying Glass: This will inspect every page of the story and give you clues. Much like this click now.";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                        return;
+                        return dialogConvo.log8();
                     } else if (office[item] === notebook) {
-                        currentText = dialogBoxDiv.innerText;
-                        dialogBoxDiv.innerText = currentText + "\nNotebook: This will give you access to a textbox next to the dialog. You may even find old note?";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                        return;
+                        return dialogConvo.log9();
                     } else if (office[item] === luckyCoin) {
-                        currentText = dialogBoxDiv.innerText;
-                        dialogBoxDiv.innerText = currentText + "\nLucky Coin: This has always been my lucky coin.";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                        return;
+                        return dialogConvo.log10();
                     } else if (office[item] === lighter) {
-                        currentText = dialogBoxDiv.innerText;
-                        dialogBoxDiv.innerText = currentText + "\nLighter: This can sure serve a purpose.";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                        return;
+                        return dialogConvo.log11();
                     } else if (office[item] === glasses) {
-                        currentText = dialogBoxDiv.innerText;
-                        dialogBoxDiv.innerText = currentText + "\nGlasses: These serve more as hind-sight rather than needed to see.";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                        return;
+                        return dialogConvo.log12();
                     } else if (office[item] === apple) {
-                        currentText = dialogBoxDiv.innerText;
-                        dialogBoxDiv.innerText = currentText + "\nApple: This will provide a small boost to health.";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                        return;
+                        return dialogConvo.log13();
                     } else if (office[item] === gun) {
-                        currentText = dialogBoxDiv.innerText;
-                        dialogBoxDiv.innerText = currentText + "\nGun: It's a gun.";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                        return;
+                        return dialogConvo.log14();
                     } else {
                         return;
                     }
@@ -172,13 +143,9 @@ function chapterOne() {
                         inventory[item] = office[item];
                         office[item] = null;
                         inventoryDiv.appendChild(inventory[item]);
-                        // console.log(office);
                         return;
                     } else {
-                        currentText = dialogBoxDiv.innerText;
-                        dialogBoxDiv.innerText = currentText + "\n\nYour Inventory is full. Try pressing 'q' to return the items from your Inventory to the office.\n You may also go to the next Chapter now.";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                        return;
+                        return dialogConvo.log15();
                     }
                 } else {
                     return;
@@ -187,21 +154,15 @@ function chapterOne() {
         };
         document.addEventListener('keydown', officeInvent);
         setTimeout(() => {
-            currentText = dialogBoxDiv.innerText;
-            dialogBoxDiv.innerText = currentText + "\n\nHint: Click on an item to check it's usefulness.\n Double click an item to place it into your inventory.\n";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log16();
         }, 300);
         setTimeout(() => {
-            currentText = dialogBoxDiv.innerText;
-            dialogBoxDiv.innerText = currentText + "\n\nThe Helicopter is leaving! You need to pick three NOW.";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log17();
             setTimeout(() => {
                 pageButtonsDiv.appendChild(chapterTwoBtn);
-                // document.removeEventListener('keydown');
             })
         }, 800)
     }
-    return office;
 }
 
 //  CHAPTER TWO
@@ -223,8 +184,7 @@ function chapterTwo() {
     dialogBoxDiv.innerText = '';
     pageButtonsDiv.innerHTML = '';
     board4Img.style.backgroundImage = "url('./assets/imgs/traveling.jpeg')";
-    dialogBoxDiv.innerText = "\nWow! Antartica has really been melting a lot. There must be more than just this new discovery here.";
-    currentText = dialogBoxDiv.innerText;
+    dialogConvo.log18();
     setTimeout(() => {
         twoPageOne();
     }, 600);
@@ -240,53 +200,30 @@ function chapterTwo() {
             people[person].addEventListener('click', (event) => caveConvo(event, person));
         }
         if (inventory.hasOwnProperty("magnifyingGlass")) {
-            currentText = dialogBoxDiv.innerText;
-            dialogBoxDiv.innerText = currentText + "\n\nMagnifying Glass: Try talking to these two people, one of them has an offer for you.";
-            // notebookText.innerText = "\\\nMagnifying Glass: Try talking to these two people, one of them has an offer for you.";
-            // notebookText.scrollTop = notebookText.scrollHeight;
-            // currentNotes = notebookText.innerText;
+            dialogConvo.log19();
             notebookConvo.note1();
             notebookConvo.note2();
         }
-        //  I LOSE MY NOTES INSIDE THIS FUNCTION \/\/\/
-        function returnFromConvo() {
-            console.log(dialogBoxDiv.innerText);
-            console.log(notebookText.innerText);
-        }
-        //  I LOSE MY NOTES INSIDE THIS FUNCTION ^^^
-        chapterTwo.returnFromConvo = returnFromConvo;
-        currentText = dialogBoxDiv.innerText;
+        //  I used to LOSE MY NOTES INSIDE THIS FUNCTION \/\/\/
+        // function returnFromConvo() {
+        // }
+        // //  I used to LOSE MY NOTES INSIDE THIS FUNCTION ^^^
+        // chapterTwo.returnFromConvo = returnFromConvo;
+
+        /////////  NEED TO ADJUST TIMING OF THIS FOR COVERSATIONS TO HAPPEN
+        /////////  MAYBE AFTER A NEW BUTTON?
         setTimeout(() => {
             if (inventory.hasOwnProperty("rock")) {
-                dialogBoxDiv.innerText = currentText + "\n\nHmmmm... This rock is rather interesting. It seems to have special properties to it.";
-                dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                dialogConvo.log24();
             }
         }, 1000);
         setTimeout(() => {
             if (inventory.hasOwnProperty("glasses") && inventory.hasOwnProperty("rock")) {
-                currentText = dialogBoxDiv.innerText;
-                // currentNotes = notebookText.innerText;
-                dialogBoxDiv.innerText = currentText + "\nGlasses: I definitely made the right choice. It seems to be missing a piece though. \nGlasses: I wonder where Dr. otherGuy was?";
-                dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                //////
-                /////
+                dialogConvo.log25();
                 notebookConvo.note3();
-                // notebookText.innerText = "\\\nGlasses: I definitely made the right choice. It seems to be missing a piece though. \\\nGlasses: I wonder where Dr. otherGuy was?";
-                // console.log(currentNotes);
-                // console.log(notebookText.innerText);
-                ///////
-                notebookText.scrollTop = notebookText.scrollHeight;
             } else if (inventory.hasOwnProperty("glasses")) {
+                dialogConvo.log26();
                 notebookConvo.note3();
-                currentText = dialogBoxDiv.innerText;
-                // currentNotes = notebookText.innerText;
-                dialogBoxDiv.innerText = currentText + "\nGlasses: I wonder where Dr. otherGuy was?";
-                dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-                // notebookText.innerText = currentNotes + "\\\nGlasses: I wonder where Dr. otherGuy was?";
-                // notebookText.scrollTop = notebookText.scrollHeight;
-                // currentNotes = notebookText.innerText;
-                // console.log(currentNotes);
-                // console.log(notebookText.innerText);
             }
             pageButtonsDiv.appendChild(twoPageTwo);
         }, 8000);
@@ -306,23 +243,12 @@ function chapterTwo() {
             people[person].removeEventListener('click', caveConvo);
         }
         setTimeout(() => {
-            dialogBoxDiv.innerText = "\nHmm.. There appears to be an ancient language written on the door.";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log27();
             setTimeout(() => {
                 setTimeout(() => {
-                    
                     if (inventory.hasOwnProperty("magnifyingGlass") || inventory.hasOwnProperty("luckyCoin")) {
-                        currentText = dialogBoxDiv.innerText;
-                        // currentNotes = notebookText.innerText;
-                        dialogBoxDiv.innerText = currentText + "\nMagnifying Glass: I believe that J.R.R. Tolkien likes this riddle.";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                        dialogConvo.log28();
                         notebookConvo.note4();
-                        // notebookText.innerText = currentNotes + "\\\nMagnifying Glass: I believe that J.R.R. Tolkien likes this riddle.";
-                        // notebookText.scrollTop = notebookText.scrollHeight;
-                        // currentNotes = notebookText.innerText;
-                        return;
-                    } else {
-                        return;
                     }
                 }, 500);
                 setTimeout(() => {
@@ -346,13 +272,11 @@ function chapterTwo() {
     middleRoom.setAttribute('id', 'mainroom');
     middleRoom.innerText = 'Main Room';
     middleRoom.addEventListener('click', roomInTheMiddle);
-    /// NEED A CHAPTER THREE BUTTON
     chapterTwo.twoPageFour = twoPageFour;
     function twoPageFour() {
         pageButtonsDiv.innerHTML = '';
         dialogBoxDiv.innerText = '';
         board4Img.style.backgroundImage = "url('./assets/imgs/first-middle.jpeg')";
-        /// MAGNIFYING GLASS CLUES IN EACH ROOM
         pageButtonsDiv.appendChild(middleRoom);
         pageButtonsDiv.appendChild(leftRoom);
         pageButtonsDiv.appendChild(rightRoom);
@@ -360,22 +284,27 @@ function chapterTwo() {
         water.addEventListener('click', grabWater);
         board4Drops.appendChild(emptyWater);
         emptyWater.addEventListener('click', placeWater);
-        dialogBoxDiv.innerText = "\nThe next door will not open either. It looks like there is a room on my right and one more on my left.";
+        dialogConvo.log30();
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            // currentNotes = notebookText.innerText;
-            // notebookText.innerText = currentNotes + "\\\nThis door reads 'What is it that mankind reveres the most?"
-            // notebookText.scrollTop = notebookText.scrollHeight;
-            notebookConvo.note6();
+            return notebookConvo.note6();
         }
     }
 }
 
 //  CHAPTER THREE
 function chapterThree() {
-    pageButtonsDiv.innerHTML = '';
+    const removeThreeBtn = document.querySelector('#chapThreeBtn');
+    removeThreeBtn.removeEventListener('click', chapterThree);
+    pageButtonsDiv.removeChild(removeThreeBtn);
     board4Img.style.backgroundImage = "url('./assets/imgs/secondFloor.jpeg')";
+    dialogConvo.log31();
     notebookConvo.note9();
-    //  DIALOGS AND GLASSES BEHIND AND MAGNIFY AHEAD
+    const torchRoom = document.createElement('button');
+    torchRoom.setAttribute('class', 'buttons');
+    torchRoom.setAttribute('id', 'torchRoomBtn');
+    torchRoom.innerText = "Page: 2"
+    torchRoom.addEventListener('click', inTorchRoom);
+    pageButtonsDiv.appendChild(torchRoom);
 
     //  CREATE THE BUTTON FOR THE NEXT PAGE UN-LIT & LIT
 }
@@ -402,11 +331,9 @@ function goBackToOffice (item) {
 
 //          CHAPTER TWO FUNCTIONS
 function caveConvo(event, person) {
-    currentText = dialogBoxDiv.innerText;
     if (event.detail === 1) {
         if (person === "scientist") {
-            dialogBoxDiv.innerText = currentText + "\n\nSCIENTIST: Hello Dr. SoAndSo, my name is Dr. notImportant and we've been expecting you. Here I believe you will need this if you can make it past the entrance.\nThe scientist has given you a Torch!";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log20();
             for (let item in caveItems) {
                 if (caveItems[item] === torch) {
                     caveItems[item].style.display = "inline-block";
@@ -414,17 +341,12 @@ function caveConvo(event, person) {
                     inventory[item] = caveItems[item];
                     caveItems[item] = null;
                     inventoryDiv.appendChild(torch);
-                } else {
                 }
             }
         } else if (person === "mercenary") {
-            currentText = dialogBoxDiv.innerText
-            dialogBoxDiv.innerText = currentText + "\n\nMERCENARY: Dr. otherGuy said you'd be showing up today.\n Don't worry about me, I'm just the hired help.";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log21();
             if (inventory.hasOwnProperty("gun")) {
-                currentText = dialogBoxDiv.innerText
-                dialogBoxDiv.innerText = currentText + "\n\nMERCENARY: HEY!! Is that an old revolver? Would you like to trade for this shiny rock?";
-                dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                dialogConvo.log22();
                 setTimeout(() => {
                     let confirm = window.confirm("TRADE: Gun for a shiny rock?");
                     if (confirm) {
@@ -435,9 +357,7 @@ function caveConvo(event, person) {
                         inventoryDiv.removeChild(gun);
                         delete inventory.gun;
                     } else {
-                        currentText = dialogBoxDiv.innerText
-                        dialogBoxDiv.innerText = currentText + "\n\nMERCENARY: Whatever. Your loss anyways.";
-                        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+                        dialogConvo.log23();
                     }
                 }, 500);
             }
@@ -445,18 +365,16 @@ function caveConvo(event, person) {
     }
             ////   HAVING TROUBLE, IT IS ADDING TWO BITS OF CONVERSATION
     ///    THIS IS MY PROBLEM \/\/\/\/\/
-    setTimeout(() => {
-        return currentText, chapterTwo.returnFromConvo();
-    }, 10000);
+    // setTimeout(() => {
+    //     return chapterTwo.returnFromConvo();
+    // }, 10000);
 }
 
 function entranceRiddle() {
     if (inventory.hasOwnProperty("luckyCoin") && inventory.hasOwnProperty("glasses")) {
         let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.", "Ask Bilbo Baggins");
         if (repsonse.match(/\b(\w*wind\w*)\b/gi)) {
-            currentText = dialogBoxDiv.innerText;
-            dialogBoxDiv.innerText = currentText + "\nI got it! Now the door is opening!";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log29();
             chapterTwo.twoPageFour();
         } else {
             //  DO DAMAGE
@@ -466,21 +384,16 @@ function entranceRiddle() {
     } else if (inventory.hasOwnProperty("luckyCoin")) {
         let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.", "Ask Bilbo Baggins");
         if (repsonse.match(/\b(\w*wind\w*)\b/gi)) {
-            currentText = dialogBoxDiv.innerText;
-            dialogBoxDiv.innerText = currentText + "\nI got it! Now the door is opening!";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log29();
             chapterTwo.twoPageFour();
         } else {
             // DO DAMAGE
             entranceRiddle();
         } 
     } else if (inventory.hasOwnProperty("glasses")) {
-        // FULL QUESTION WITH NO COIN
         let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.");
         if (repsonse.match(/\b(\w*wind\w*)\b/gi)) {
-            currentText = dialogBoxDiv.innerText;
-            dialogBoxDiv.innerText = currentText + "\nI got it! Now the door is opening!";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log29();
             chapterTwo.twoPageFour();
         } else {
             //  DO DAMAGE
@@ -488,12 +401,9 @@ function entranceRiddle() {
             entranceRiddle();
         }
     } else {
-        // FULL QUESTION WITH NO COIN
         let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.");
         if (repsonse.match(/\b(\w*wind\w*)\b/gi)) {
-            currentText = dialogBoxDiv.innerText;
-            dialogBoxDiv.innerText = currentText + "\nI got it! Now the door is opening!";
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log29();
             chapterTwo.twoPageFour();
         } else {
             // DO DAMAGE
@@ -501,26 +411,30 @@ function entranceRiddle() {
         }
     }
 }
+const chapterThreeBtn = document.createElement('button');
+chapterThreeBtn.setAttribute('class', 'buttons');
+chapterThreeBtn.setAttribute('id', 'chapThreeBtn');
+chapterThreeBtn.innerText = 'Chapter: 3';
+chapterThreeBtn.addEventListener('click', chapterThree);
 
 function roomInTheMiddle() {
-    /// DONT NEED ITEM VISIBLE OR THE EMPTY DIV
     for (let items in firstFloorItems) {
         firstFloorItems[items].style.display = "none";
     }
     board4Img.style.backgroundImage = "url('./assets/imgs/first-middle.jpeg')";
     if (inventory.hasOwnProperty('magnifyingGlass')) {
-        // currentNotes = notebookText.innerText;
-        // notebookText.innerText = currentNotes + "\\\nThis door reads 'What is it that mankind reveres the most?"
-        // notebookText.scrollTop = notebookText.scrollHeight;
         notebookConvo.note6();
-    } else if (inventory.hasOwnProperty('emptyWater')) {
+    }
+    if (inventory.hasOwnProperty('emptyWater')) {
+        while (pageButtonsDiv.firstChild) {
+            pageButtonsDiv.removeChild(pageButtonsDiv.lastChild);
+        };
         delete inventory.emptyWater;
-        return notebookText.innerText, chapterThree();
+        pageButtonsDiv.appendChild(chapterThreeBtn);
     }
 }
 
 function roomOnTheLeft() {
-    //// NEED TO HAVE AN ADDABLE ITEM AND REMOVE THE EMPTY DIV
     if (firstFloorItems.hasOwnProperty('water')) {
         water.style.display = "inline-block";
     }
@@ -529,11 +443,7 @@ function roomOnTheLeft() {
     }
     board4Img.style.backgroundImage = "url('./assets/imgs/first-left.jpeg')";
     if (inventory.hasOwnProperty('magnifyingGlass')) {
-        // currentNotes = notebookText.innerText;
-        // notebookText.innerText = currentNotes + "\\\nThere is a small stream of water at this alter."
-        // notebookText.scrollTop = notebookText.scrollHeight;
-        notebookConvo.note7();
-        return notebookText.innerText;
+        return notebookConvo.note7();
     }
 }
 
@@ -546,11 +456,7 @@ function roomOnTheRight() {
     }
     board4Img.style.backgroundImage = "url('./assets/imgs/first-right.jpeg')";
     if (inventory.hasOwnProperty('magnifyingGlass')) {
-        // currentNotes = notebookText.innerText;
-        // notebookText.innerText = currentNotes + "\\\nThere is an empty pedastal in this room."
-        // notebookText.scrollTop = notebookText.scrollHeight;
-        notebookConvo.note8();
-        return notebookText.innerText;
+        return notebookConvo.note8();
     }
 }
 
@@ -578,7 +484,6 @@ function placeWater() {
         emptyWater.appendChild(water);
         inventory.emptyWater = emptyWater;
         delete inventory.water;
-        pageButtonsDiv.innerHTML = '';
         roomInTheMiddle();
     } else {
         roomInTheMiddle();
@@ -587,143 +492,297 @@ function placeWater() {
 
 //          CHAPTER THREE FUNCTIONS
 
-
-//          HIDDEN ABILITIES
-//  NOTEBOOK
-function secretCounter(obj) {
-    if (obj.value.length > 30 && obj.value.length < 40) {
-        let oldText = obj.value;
-        obj.value = oldText +" \nOLD NOTES!!\nHINT: You shouldn't have brought the gun.";
-    }
+function inTorchRoom() {
+    board4Img.style.backgroundImage = "url('./assets/imgs/un-lit.png')";
+    dialogConvo.log32();
+    notebookConvo.note10();
+    //  ADD BUTTONS TO THE TORCHES!!!!
 }
 
 
 
-//          NOTEBOOK METHOD HOPEFULLY
 
+
+
+//          HIDDEN ABILITIES
+//  NOTEBOOK
+// function secretCounter(obj) {
+//     if (obj.value.length > 30 && obj.value.length < 40) {
+//         let oldText = obj.value;
+//         obj.value = oldText +" \nOLD NOTES!!\nHINT: You shouldn't have brought the gun.";
+//     }
+// }
+
+
+
+//////////// ^^^^^^^REWRITE THIS FOR INNERTEXT COUNTER^^^^^^^^ ////////////
+
+
+//          DIALOG METHODS
+const dialogConvo = {
+    log1() {
+        dialogBoxDiv.appendChild(lineBreak('Look for all messages to appear in the THIS box at the bottom of the screen.'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log2() {
+        dialogBoxDiv.appendChild(lineBreak('Good Morning, Today is like no other and you are about to find out why!'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log3() {
+        dialogBoxDiv.appendChild(lineBreak('This dialog box is essential to the process of the game, so will be the buttons to the left of this box.'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log4() {
+        dialogBoxDiv.appendChild(lineBreak('Click the Page: 2 button to procede with the intro.'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log5() {
+        dialogBoxDiv.appendChild(lineBreak("You're ego decides for you that you must go to this new mysterious island"));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log6() {
+        dialogBoxDiv.appendChild(lineBreak('You are now going to your office and can only bring three of these items with you on the trip. Flip to Page: 3'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log7() {
+        dialogBoxDiv.appendChild(lineBreak('ONLY three items from this office can be put into your inventory box. You will never have access to the items left behind again!'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log8() {
+        dialogBoxDiv.appendChild(lineBreak('Magnifying Glass: This will inspect every page of the story and give you clues. Much like this click now.'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log9() {
+        dialogBoxDiv.appendChild(lineBreak('Notebook: This will give you access to a textbox next to the dialog. You may even find old note?'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log10() {
+        dialogBoxDiv.appendChild(lineBreak('Lucky Coin: This has always been my lucky coin.'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log11() {
+        dialogBoxDiv.appendChild(lineBreak('Lighter: This can sure serve a purpose.'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log12() {
+        dialogBoxDiv.appendChild(lineBreak('Glasses: These serve more as hind-sight rather than needed to see.'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log13() {
+        dialogBoxDiv.appendChild(lineBreak('Apple: This will provide a small boost to health.'));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log14() {
+        dialogBoxDiv.appendChild(lineBreak("Gun: It's a gun."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log15() {
+        dialogBoxDiv.appendChild(lineBreak("Your Inventory is full. Try pressing 'q' to return the items from your Inventory to the office.\n You may also go to the next Chapter now."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log16() {
+        dialogBoxDiv.appendChild(lineBreak("Hint: Click on an item to check it's usefulness.\n Double click an item to place it into your inventory."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log17() {
+        dialogBoxDiv.appendChild(lineBreak("The Helicopter is leaving! You need to pick three NOW."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log18() {
+        dialogBoxDiv.appendChild(lineBreak("Wow! Antartica has really been melting a lot. There must be more than just this new discovery here."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log19() {
+        // IF
+        dialogBoxDiv.appendChild(lineBreak("Magnifying Glass: Try talking to these two people, one of them has an offer for you."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log20() {
+        dialogBoxDiv.appendChild(lineBreak("SCIENTIST: Hello Dr. SoAndSo, my name is Dr. notImportant and we've been expecting you. Here I believe you will need this if you can make it past the entrance.\nThe scientist has given you a Torch!"));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log21() {
+        dialogBoxDiv.appendChild(lineBreak("MERCENARY: Dr. otherGuy said you'd be showing up today.\n Don't worry about me, I'm just the hired help."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log22() {
+        dialogBoxDiv.appendChild(lineBreak("MERCENARY: HEY!! Is that an old revolver? Would you like to trade for this shiny rock?"));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log23() {
+        dialogBoxDiv.appendChild(lineBreak("MERCENARY: Whatever. Your loss anyways."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log24() {
+        // IF
+        dialogBoxDiv.appendChild(lineBreak("Hmmmm... This rock is rather interesting. It seems to have special properties to it."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log25() {
+        // IF
+        dialogBoxDiv.appendChild(lineBreak("Glasses: I definitely made the right choice. It seems to be missing a piece though. \nGlasses: I wonder where Dr. otherGuy was?"));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log26() {
+        // IF
+        dialogBoxDiv.appendChild(lineBreak("Glasses: I wonder where Dr. otherGuy was?"));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log27() {
+        dialogBoxDiv.appendChild(lineBreak("Hmm.. There appears to be an ancient language written on the door."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log28() {
+        if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('luckyCoin')) {
+            dialogBoxDiv.appendChild(lineBreak("Magnifying Glass: I believe I've seen a movie with a similar riddle likes this.\nLucky Coin: This reminded you of a movie you watched with a similar riddle!"));
+            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+        } else if (inventory.hasOwnProperty('magnifyingGlass')) {
+            dialogBoxDiv.appendChild(lineBreak("Magnifying Glass: I believe I've seen a movie with a similar riddle likes this."));
+            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+        }
+    },
+    log29() {
+        dialogBoxDiv.appendChild(lineBreak("I got it! Now the door is opening!"));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log30() {
+        dialogBoxDiv.appendChild(lineBreak("The next door will not open either. It looks like there is a room on my right and one more on my left."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log31() {
+        if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('glasses')) {
+            dialogBoxDiv.appendChild(lineBreak("Glasses: First wind, then water, this is interesting. Magnifying Glass: I'm glad I was given this torch, it is getting really dark."));
+            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+        } else if (inventory.hasOwnProperty('magnifyingGlass')) {
+            dialogBoxDiv.appendChild(lineBreak("Magnifying Glass: I'm glad I was given this torch, it is getting really dark."));
+            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+        } else if (inventory.hasOwnProperty('glasses')) {
+            dialogBoxDiv.appendChild(lineBreak("Glasses: First wind, then water, this is interesting."));
+            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+        }
+    },
+    log32() {
+        if (inventory.hasOwnProperty('magnifyingGlass')) {
+            dialogBoxDiv.appendChild(lineBreak("Magnifying Glass: Extremely happy I have the torch, Lets light these three torches."));
+            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+        }
+    },
+    log33() {
+        dialogBoxDiv.appendChild(lineBreak(""));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log34() {
+        dialogBoxDiv.appendChild(lineBreak(""));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log35() {
+        dialogBoxDiv.appendChild(lineBreak(""));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log36() {
+        dialogBoxDiv.appendChild(lineBreak(""));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log37() {
+        dialogBoxDiv.appendChild(lineBreak(""));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+}
+
+//          NOTEBOOK METHODS
 const notebookConvo = {
-    oldNotes: notebookText.innerText,
     activate() {
         notebookDiv.style.display = "flex";
         notebookDiv.appendChild(notebookText);
     },
     note1() {
-        notebookText.innerText = "Notebook: You've brought the 'Notebook'. You will not regret this. Feel free to add your own notes as well.";
+        notebookText.appendChild(lineBreak("Notebook: You've brought the 'Notebook'. You will not regret this. Feel free to add your own notes as well."));
         notebookText.scrollTop = notebookText.scrollHeight;
-        return this.oldNotes;
     },
     note2() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.innerText = this.oldNotes + "Magnifying Glass: Try talking to these two. One of them may have a trade for you.";
+            notebookText.appendChild(lineBreak("Magnifying Glass: Try talking to these two. One of them may have a trade for you."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
         }
     },
     note3() {
         if (inventory.hasOwnProperty('rock') && inventory.hasOwnProperty('glasses')) {
-            notebookText.innerText = this.oldNotes + "Glasses: I wonder where Dr. OtherGuy was? Glasses: I have a good feeling about this trade.";
+            notebookText.appendChild(lineBreak("Glasses: I wonder where Dr. OtherGuy was? Glasses: I have a good feeling about this trade."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
         } else if (inventory.hasOwnProperty('glasses')) {
-            notebookText.innerText = this.oldNotes + "Glasses: I wonder where Dr. OtherGuy was?";
+            notebookText.appendChild(lineBreak("Glasses: I wonder where Dr. OtherGuy was?"));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
-        }
+        } 
     },
     note4() {
         if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('luckyCoin')) {
-            notebookText.innerText = this.oldNotes + "Magnifying Glass: I believe I've seen a movie with a similar riddle likes this. Lucky Coin: This reminded you of a movie you watched with a similar riddle!";
+            notebookText.appendChild(lineBreak("Magnifying Glass: I believe I've seen a movie with a similar riddle likes this.\nLucky Coin: This reminded you of a movie you watched with a similar riddle!"));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
         } else if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.innerText = this.oldNotes + "Magnifying Glass: I believe I've seen a movie with a similar riddle likes this.";
+            notebookText.appendChild(lineBreak("Magnifying Glass: I believe I've seen a movie with a similar riddle likes this."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
         }
     },
     note5() {
         /// COULD WORK FOR ALL GLASSES PREVENTS
         if (inventory.hasOwnProperty('glasses')) {
-            notebookText.innerText = this.oldNotes + "Glasses: Prevented the damage, try again.";
+            notebookText.appendChild(lineBreak("Glasses: Prevented the damage, try again."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
-        }
+        } 
     },
     note6() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.innerText = this.oldNotes + "Magnifying Glass: The door reads 'What does mankind covete the most?'.";
+            notebookText.appendChild(lineBreak("Magnifying Glass: The door reads 'What does mankind covete the most?'."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
         }
     },
     note7() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.innerText = this.oldNotes + "Magnifying Glass: This room is centered on this water fountain.";
+            notebookText.appendChild(lineBreak("Magnifying Glass: This room is centered on this water fountain."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
         }
     },
     note8() {
         if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('water')) {
-            notebookText.innerText = this.oldNotes + "Magnifying Glass: This empty pedestal is begging for the water.";
+            notebookText.appendChild(lineBreak("Magnifying Glass: This empty pedestal is begging for the water."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
         } else if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.innerText = this.oldNotes + "Magnifying Glass: This empty pedestal is missing something.";
+            notebookText.appendChild(lineBreak("Magnifying Glass: This empty pedestal is missing something."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
         }
     },
     note9() {
         if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('glasses')) {
-            notebookText.innerText = this.oldNotes + "Glasses: First wind, then water, this is interesting. Magnifying Glass: I'm glad I was given this torch, it is getting really dark.";
+            notebookText.appendChild(lineBreak("Glasses: First wind, then water, this is interesting.\nMagnifying Glass: I'm glad I was given this torch, it is getting really dark."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
         } else if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.innerText = this.oldNotes + "Magnifying Glass: I'm glad I was given this torch, it is getting really dark.";
+            notebookText.appendChild(lineBreak("Magnifying Glass: I'm glad I was given this torch, it is getting really dark."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
         } else if (inventory.hasOwnProperty('glasses')) {
-            notebookText.innerText = this.oldNotes + "Glasses: First wind, then water, this is interesting.";
+            notebookText.appendChild(lineBreak("Glasses: First wind, then water, this is interesting."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
         }
     },
     note10() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.innerText = this.oldNotes + "Magnifying Glass: Extremely happy I have the torch, Lets light these three torches.";
+            notebookText.appendChild(lineBreak("Magnifying Glass: Extremely happy I have the torch, Lets light these three torches."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
         }
     },
     note11() {
         if (inventory.hasOwnProperty('glasses')) {
-            notebookText.innerText = this.oldNotes + "Glasses: first wind, second water, now fire...";
+            notebookText.appendChild(lineBreak("Glasses: first wind, second water, now fire..."));
             notebookText.scrollTop = notebookText.scrollHeight;
-            return this.oldNotes;
-        } else {
-            return;
         }
     },
 }
 
+
+
+function lineBreak(string) {
+    let p = document.createElement('p');
+    p.innerText = string;
+    return p;
+}
 
 ///// CHAPTER THREE HAS STOPPED WORKING AND NOTEBOOK CONTINUES TO OVERWRITE!!
