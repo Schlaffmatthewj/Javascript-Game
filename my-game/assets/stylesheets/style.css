@@ -242,12 +242,75 @@ main h1 {
 #emptyWater {
     width: 75px;
     height: 75px;
-    background-repeat: no-repeat;
-    background-size: contain;
     left: 45%;
     top: 37%;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
+.torchUnlit {
+    position: absolute;
+    display: none;
+    width: 75px;
+    height: 75px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#torch1 {
+    width: 75px;
+    height: 75px;
+    top: 30%;
+    left: 5%;
+}
+
+#torch2 {
+    width: 75px;
+    height: 75px;
+    top: 32%;
+    left: 31%;
+}
+
+#torch3 {
+    width: 75px;
+    height: 75px;
+    top: 35%;
+    right: 20%;
+}
+
+#reDo1 {
+    width: 75px;
+    height: 75px;
+    top: 30%;
+    left: 5%;
+}
+
+#reDo2 {
+    width: 75px;
+    height: 75px;
+    top: 32%;
+    left: 31%;
+}
+
+#reDo3 {
+    width: 75px;
+    height: 75px;
+    top: 35%;
+    right: 20%;
+}
+
+.bats {
+    display: none;
+    width: 775px;
+    height: 500px;
+    position: absolute;
+}
+
+#bat {
+    width: 775px;
+    height: 500px;
+    background-image: url('../imgs/bats.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 /*    DIALOG AND OTHER USEFUL THINGS */
 .bottomTask {
