@@ -3,7 +3,7 @@
 body {
     display: flex;
     justify-content: center;
-    background-color: darkorchid;
+    background-color: black;
 }
 
 main {
@@ -12,7 +12,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: darkseagreen;
+    background-color: rgb(160, 201, 66);
+    border-radius: 10%;
 }
 
 main h1 {
@@ -26,7 +27,7 @@ main h1 {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: firebrick;
+    background-color: rgba(117, 19, 15, 0.986);
 }
 
 .inventory {
@@ -37,6 +38,7 @@ main h1 {
     justify-content: center;
     align-items: center;
     background-color: gray;
+    border-radius: 20px;
 }
 
 .inventoryDropBox {
@@ -69,7 +71,7 @@ main h1 {
 .boardGame {
     width: 100%;
     height: 500px;
-    background-color: forestgreen;
+    background-color: rgb(160, 201, 66);
 }
 
 .boardForImg {
@@ -86,6 +88,43 @@ main h1 {
     height: 500px;
     position: relative;
     z-index: 0;
+}
+
+#healthDiv {
+    display: none;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    left: 25px;
+    top: 15px;
+}
+
+#healthBar {
+    height: 30px;
+}
+
+progress[value]::-webkit-progress-value {
+    box-shadow: 0 2px 5px #460d0dc5 inset;
+    background-color: red;
+}
+
+progress[value]::-webkit-progress-bar {
+    box-shadow: 0 2px 5px #460d0dc5 inset;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+progress[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    width: 250px;
+    height: 20px;
+}
+
+label {
+    text-align: center;
+    font-size: 1.5em;
 }
 
 .items {
@@ -197,6 +236,46 @@ main h1 {
     background-position: center;
     left: 25px;
     top: 20px;
+}
+
+.person2 {
+    width: 100px;
+    height: 200px;
+    position: absolute;
+    display: none;
+}
+
+#scientist2 {
+    width: 100px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/scientist.png');
+    background-size: contain;
+    background-position: center;
+    bottom: 0;
+    right: 125px;
+}
+
+#mercenary2 {
+    width: 100px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/mercenary.png');
+    background-size: contain;
+    background-position: center;
+    left: 25px;
+    bottom: 0;
+}
+
+#drOther {
+    width: 100px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/dr-other.png');
+    background-size: contain;
+    background-position: center;
+    left: 51%;
+    bottom: 0;
 }
 
 .outsideCave {
@@ -312,6 +391,107 @@ main h1 {
     background-repeat: no-repeat;
 }
 
+/* FINAL ITEMS */
+.elements {
+    position: absolute;
+    display: none;
+    width: 75px;
+    height: 75px;
+}
+
+#earthId {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/ele-earth.jpg');
+    background-size: contain;
+    top: 35%;
+    left: 24%;
+}
+
+#windId {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/ele-wind.jpg');
+    background-size: contain;
+    top: 43%;
+    right: 52%;
+}
+
+#fireId {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/ele-fire.jpg');
+    background-size: contain;
+    top: 37%;
+    right: 35%;
+}
+
+#waterId {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/ele-water.jpg');
+    background-size: contain;
+    right: 45%;
+    top: 33%;
+}
+
+#key {
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../imgs/final-key.jpeg');
+    background-size: contain;
+}
+
+.elementsDrop {
+    position: absolute;
+    display: none;
+    width: 75px;
+    height: 75px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#waterDrop {
+    width: 75px;
+    height: 75px;
+    right: 45%;
+    top: 33%;
+}
+
+#windDrop {
+    width: 75px;
+    height: 75px;
+    top: 43%;
+    right: 52%;
+}
+
+#fireDrop {
+    width: 75px;
+    height: 75px;
+    top: 37%;
+    right: 35%;
+}
+
+#earthDrop {
+    width: 75px;
+    height: 75px;
+    top: 35%;
+    left: 24%;
+}
+
+#keyDrop {
+    width: 75px;
+    height: 75px;
+    top: 41%;
+    right: 42%;
+}
+
+
+
 /*    DIALOG AND OTHER USEFUL THINGS */
 .bottomTask {
     width: 100%;
@@ -319,7 +499,7 @@ main h1 {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: gold;
+    background-color: rgba(117, 19, 15, 0.986);
 }
 
 .pageButtons {
@@ -328,11 +508,11 @@ main h1 {
     display: flex;
     flex-direction: column;
     justify-content: right;
-    background-color: lightcoral;
 }
 
 .buttons {
     height: 50px;
+    border-radius: 20px;
 }
 
 .dialog {
@@ -342,6 +522,7 @@ main h1 {
     justify-content: center;
     align-items: center;
     background-color: lightseagreen;
+    border-radius: 20px;
 }
 
 .dialogBox {
