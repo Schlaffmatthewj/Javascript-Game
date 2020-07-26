@@ -27,6 +27,7 @@ let dam = 25;
 let ouch = 30;
 const healthBarDiv = document.querySelector('#healthDiv');
 const healthBar = document.querySelector('progress');
+const healthLabel = document.querySelector('label');
 healthBar.setAttribute('value', health);
 
 
@@ -80,6 +81,31 @@ let lastPeople = {scientist2: scientist2, mercenary2: mercenary2, drOther2: drOt
 let sciFinal = false;
 let merFinal = false;
 let drFinal = false;
+
+// CHAPTER BUTTONS AND THINGS
+// BAT OPTIONS
+const youShoot = document.createElement('button');
+youShoot.setAttribute('class', 'buttons');
+youShoot.setAttribute('id', 'shootBats');
+youShoot.addEventListener('click', batGun);
+youShoot.innerText = "Shoot at bats with gun";
+const youRun = document.createElement('button');
+youRun.setAttribute('class', 'buttons');
+youRun.setAttribute('id', 'runFromBats');
+youRun.addEventListener('click', batRun);
+youRun.innerText = "Run from the bats";
+const useTorch = document.createElement('button');
+useTorch.setAttribute('class', 'buttons');
+useTorch.setAttribute('id', 'torchBats');
+useTorch.addEventListener('click', batTorch);
+useTorch.innerText = "Wave torch around";
+
+// 4
+const fourth = document.createElement('button');
+fourth.setAttribute('class', 'buttons');
+fourth.setAttribute('id', 'fourth');
+fourth.addEventListener('click', chapterFour);
+fourth.innerText = "Chapter: 4";
 
 //  THE UNLIT TORCHES
 const unLit1 = document.querySelector('#torch1');
@@ -244,39 +270,32 @@ function chapterOne() {
     pageTwoBtn.setAttribute('class', 'buttons');
     pageTwoBtn.innerText = "Page: 2";
     pageTwoBtn.addEventListener('click', pageTwo);
-    function pageOne() {
-        board4Img.style.backgroundImage = "url('./assets/imgs/first-morning.jpeg')";
-        setTimeout(() => {
-            alert("Look for all messages to appear in the 'Dialog' box at the bottom of the screen");
-            dialogConvo.log1();
-            setTimeout(() => {
-                dialogConvo.log2();
-            }, 1000);
-            setTimeout(() => {
-                dialogConvo.log3();
-            }, 6000);
-            setTimeout(() => {
-                dialogConvo.log4();
-                pageButtonsDiv.appendChild(pageTwoBtn);
-            }, 10000);
-        }, 3000);
-        dialogBoxDiv.innerText = '';
-    }
-    pageOne();
+    board4Img.style.backgroundImage = "url('./assets/imgs/first-morning.jpeg')";
+    alert("Look for all messages to appear in the 'Dialog' box at the bottom of the screen");
+    dialogConvo.log1();
+    setTimeout(() => {
+        dialogConvo.log2();
+    }, 1000);
+    setTimeout(() => {
+        dialogConvo.log3();
+        dialogConvo.log4();
+        pageButtonsDiv.appendChild(pageTwoBtn);
+    }, 5000);
     const pageThreeBtn = document.createElement('button');
     pageThreeBtn.setAttribute('class', 'buttons');
     pageThreeBtn.innerText = "Page: 3";
     pageThreeBtn.addEventListener('click', pageThree);
     function pageTwo () {
+        dialogBoxDiv.innerText = '';
         pageTwoBtn.removeEventListener('click', pageTwo);
         board4Img.style.backgroundImage = "url('./assets/imgs/old-letter.jpg')";
         setTimeout(() => {
             dialogConvo.log5();
-        }, 8000);
+        }, 2000);
         setTimeout(() => {
             dialogConvo.log6();
             pageButtonsDiv.appendChild(pageThreeBtn);
-        }, 10000);
+        }, 4000);
         dialogBoxDiv.innerText = '';
     }
     const chapterTwoBtn = document.createElement('button');
@@ -356,7 +375,7 @@ function chapterTwo() {
     dialogConvo.log18();
     setTimeout(() => {
         twoPageOne();
-    }, 6000);
+    }, 4000);
     const twoPageTwo = document.createElement('button');
     twoPageTwo.setAttribute('class', 'buttons');
     twoPageTwo.setAttribute('id', 'buttonTwo');
@@ -379,7 +398,7 @@ function chapterTwo() {
                     dialogConvo.log24();
                     notebookConvo.note12();
                 }
-            }, 5000);
+            }, 2000);
             setTimeout(() => {
                 if (inventory.hasOwnProperty("glasses") && inventory.hasOwnProperty("rock")) {
                     dialogConvo.log25();
@@ -389,7 +408,7 @@ function chapterTwo() {
                     notebookConvo.note3();
                 }
                 pageButtonsDiv.appendChild(twoPageTwo);
-            }, 6000);
+            }, 3000);
         }
         chapterTwo.returnToChapter = returnToChapter;
     }
@@ -415,12 +434,12 @@ function chapterTwo() {
                         dialogConvo.log28();
                         notebookConvo.note4();
                     }
-                }, 2000);
+                }, 1000);
                 setTimeout(() => {
                     entranceRiddle();
-                }, 4000);
+                }, 2000);
             }, 2000);
-        },5000);
+        },3000);
     }
     const leftRoom = document.createElement('button');
     leftRoom.setAttribute('class', 'buttons');
@@ -473,162 +492,20 @@ function chapterThree() {
     function threePageThree() {
         dialogConvo.log39();
         setTimeout(() => {
+            pageButtonsDiv.innerHTML = '';
             bats.style.display = "inline-block"
             dialogConvo.log40();
             setTimeout(() => {
                 if (inventory.hasOwnProperty('gun')) {
-                    let which = window.prompt("What should you do? Which should you use?", "'gun' or 'torch' or 'run'");
-                    setTimeout(() => {
-                        if (which === 'gun') {
-                            newHealth(ouch);
-                            dialogConvo.log41();
-                            notebookConvo.note13();
-                            reDoTorches();
-                        } else if (which === 'torch') {
-                            if (inventory.hasOwnProperty('glasses')) {
-                                dialogConvo.log33();
-                                notebookConvo.note5();
-                            } else {
-                                newHealth(lightDam);
-                            }
-                            if (inventory.hasOwnProperty('lighter')) {
-                                notebookConvo.note14();
-                                dialogConvo.log42();
-                                threePageFour();
-                            } else {
-                                dialogConvo.log43();
-                                reDoTorches();
-                            }
-                        } else if (which === 'run') {
-                            dialogConvo.log44();
-                            if (inventory.hasOwnProperty('glasses')) {
-                                dialogConvo.log33();
-                                notebookConvo.note5();
-                            } else {
-                                newHealth(medDam);
-                            }
-                            reDoTorches();
-                        } else if (which === null) {
-                            dialogConvo.log45();
-                            newHealth(dam);
-                            reDoTorches();
-                        } else {
-                            dialogConvo.log45();
-                            newHealth(dam);
-                            reDoTorches();
-                        }
-                    }, 3000);
-                } else {
-                    let which = window.prompt("What should you do?", "use 'torch' or 'run'");
-                    setTimeout(() => {
-                        if (which === 'torch') {
-                            if (inventory.hasOwnProperty('glasses')) {
-                                dialogConvo.log33();
-                                notebookConvo.note5();
-                            } else {
-                                newHealth(lightDam);
-                            }
-                            if (inventory.hasOwnProperty('lighter')) {
-                                notebookConvo.note14();
-                                dialogConvo.log42();
-                                threePageFour();
-                            } else {
-                                dialogConvo.log43();
-                                reDoTorches();
-                            }
-                        } else if (which === 'run') {
-                            dialogConvo.log44();
-                            if (inventory.hasOwnProperty('glasses')) {
-                                dialogConvo.log33();
-                                notebookConvo.note5();
-                            } else {
-                                newHealth(medDam);
-                            }
-                            reDoTorches();
-                        } else if (which === null) {
-                            dialogConvo.log45();
-                            newHealth(dam);
-                            reDoTorches();
-                        } else {
-                            dialogConvo.log45();
-                            newHealth(dam);
-                            reDoTorches();
-                        }
-                    }, 3000);
+                    pageButtonsDiv.appendChild(youShoot);
+                    // NEW CONVO TO GET RID OF THE PROMPT
                 }
+                pageButtonsDiv.appendChild(useTorch);
+                pageButtonsDiv.appendChild(youRun);
             }, 3000);
-        }, 6000);
+        }, 3000);
     }
     chapterThree.threePageThree = threePageThree;
-    function reDoTorches() {
-        if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookConvo.note15();
-            dialogConvo.log46();
-        }
-        board4Img.style.backgroundImage = "url('./assets/imgs/secondFloor.jpeg')"
-        const newButton = document.createElement('button');
-        newButton.addEventListener('click', inTorchRoomAgain);
-        newButton.setAttribute('class', 'buttons');
-        newButton.setAttribute('id', 'reDo');
-        newButton.innerText = "Try Again";
-        pageButtonsDiv.appendChild(newButton);
-        function inTorchRoomAgain() {
-            board4Drops.removeChild(bats);
-            pageButtonsDiv.removeChild(newButton);
-            board4Img.style.backgroundImage = "url('./assets/imgs/un-lit.png')";
-            for (let toRches2 in dark2) {
-                dark2[toRches2].style.display = "inline-block";
-                dark2[toRches2].addEventListener('click', (event) => countTorches2(event, toRches2));
-            }
-            function countTorches2(event, toRches2) {
-                if (event.detail === 1) {
-                    if (toRches2 === "reDoTorch1") {
-                        board4Drops.removeChild(reDo1);
-                        delete dark2.reDoTorch1;
-                        if (Object.keys(dark2).length === 0) {
-                            board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
-                            setTimeout(() => {
-                                threePageFour();
-                            }, 2000);
-                        }
-                    }
-                    if (toRches2 === "reDoTorch2") {
-                        board4Drops.removeChild(reDo2);
-                        delete dark2.reDoTorch2;
-                        if (Object.keys(dark2).length === 0) {
-                            board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
-                            setTimeout(() => {
-                                threePageFour();
-                            }, 2000);
-                        }
-                    }
-                    if (toRches2 === "reDoTorch3") {
-                        board4Drops.removeChild(reDo3);
-                        delete dark2.reDoTorch3;
-                        if (Object.keys(dark2).length === 0) {
-                            board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
-                            setTimeout(() => {
-                                threePageFour();
-                            }, 2000);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    function threePageFour() {
-        bats.style.display = 'none';
-        board4Img.style.backgroundImage = "url('./assets/imgs/second-final.jpeg')"
-        const fourth = document.createElement('button');
-        fourth.setAttribute('class', 'buttons');
-        fourth.setAttribute('id', 'fourth');
-        fourth.addEventListener('click', chapterFour);
-        fourth.innerText = "Chapter: 4";
-        pageButtonsDiv.appendChild(fourth);
-        dialogConvo.log50();
-        notebookConvo.note11();
-        dialogConvo.log47();
-    }
 }
 
 //  CHAPTER FOUR
@@ -640,7 +517,7 @@ function chapterFour(){
     setTimeout(() => {
         dialogConvo.log48();
         notebookConvo.note16();
-        dialogConvo.log67();
+        dialogConvo.log69();
         board4Img.style.backgroundImage = "url('./assets/imgs/corridor.jpeg')";
         setTimeout(() => {
             pageButtonsDiv.appendChild(fire);
@@ -811,19 +688,19 @@ function entranceRiddle() {
             dialogConvo.log29();
             setTimeout(() => {
                 chapterTwo.twoPageFour();
-            }, 4000);
+            }, 2000);
         } else if (repsonse === null) {
             notebookConvo.note5();
             dialogConvo.log33();
             setTimeout(() => {
                 entranceRiddle();
-            }, 4000);
+            }, 2000);
         } else {
             notebookConvo.note5();
             dialogConvo.log33();
             setTimeout(() => {
                 entranceRiddle();
-            }, 4000);
+            }, 2000);
         }
     } else if (inventory.hasOwnProperty("luckyCoin")) {
         let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.", "Ask Bilbo Baggins");
@@ -831,19 +708,19 @@ function entranceRiddle() {
             dialogConvo.log29();
             setTimeout(() => {
                 chapterTwo.twoPageFour();
-            }, 4000);
+            }, 2000);
         } else if (repsonse === null) {
             dialogConvo.log34();
             newHealth(lightDam);
             setTimeout(() => {
                 entranceRiddle();
-            }, 4000);
+            }, 2000);
         } else {
             dialogConvo.log34();
             newHealth(lightDam);
             setTimeout(() => {
                 entranceRiddle();
-            }, 4000);
+            }, 2000);
         } 
     } else if (inventory.hasOwnProperty("glasses")) {
         let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.");
@@ -851,19 +728,19 @@ function entranceRiddle() {
             dialogConvo.log29();
             setTimeout(() => {
                 chapterTwo.twoPageFour();
-            }, 4000);
+            }, 2000);
         } else if (repsonse === null) {
             notebookConvo.note5();
             dialogConvo.log33();
             setTimeout(() => {
                 entranceRiddle();
-            }, 4000);
+            }, 2000);
         } else {
             notebookConvo.note5();
             dialogConvo.log33();
             setTimeout(() => {
                 entranceRiddle();
-            }, 4000);
+            }, 2000);
         }
     } else {
         let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.");
@@ -871,19 +748,19 @@ function entranceRiddle() {
             dialogConvo.log29();
             setTimeout(() => {
                 chapterTwo.twoPageFour();
-            }, 4000);
+            }, 2000);
         } else if (repsonse === null) {
             dialogConvo.log34();
             newHealth(lightDam);
             setTimeout(() => {
                 entranceRiddle();
-            }, 4000);
+            }, 2000);
         } else {
             dialogConvo.log34();
             newHealth(lightDam);
             setTimeout(() => {
                 entranceRiddle();
-            }, 4000);
+            }, 2000);
         }
     }
 }
@@ -1032,6 +909,108 @@ function inTorchRoom() {
             }
         }
     }
+}
+
+function reDoTorches() {
+    if (inventory.hasOwnProperty('magnifyingGlass')) {
+        notebookConvo.note15();
+        dialogConvo.log46();
+    }
+    board4Img.style.backgroundImage = "url('./assets/imgs/secondFloor.jpeg')"
+    const newButton = document.createElement('button');
+    newButton.addEventListener('click', inTorchRoomAgain);
+    newButton.setAttribute('class', 'buttons');
+    newButton.setAttribute('id', 'reDo');
+    newButton.innerText = "Try Again";
+    pageButtonsDiv.appendChild(newButton);
+    function inTorchRoomAgain() {
+        board4Drops.removeChild(bats);
+        pageButtonsDiv.removeChild(newButton);
+        board4Img.style.backgroundImage = "url('./assets/imgs/un-lit.png')";
+        for (let toRches2 in dark2) {
+            dark2[toRches2].style.display = "inline-block";
+            dark2[toRches2].addEventListener('click', (event) => countTorches2(event, toRches2));
+        }
+        function countTorches2(event, toRches2) {
+            if (event.detail === 1) {
+                if (toRches2 === "reDoTorch1") {
+                    board4Drops.removeChild(reDo1);
+                    delete dark2.reDoTorch1;
+                    if (Object.keys(dark2).length === 0) {
+                        board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
+                        setTimeout(() => {
+                            threePageFour();
+                        }, 2000);
+                    }
+                }
+                if (toRches2 === "reDoTorch2") {
+                    board4Drops.removeChild(reDo2);
+                    delete dark2.reDoTorch2;
+                    if (Object.keys(dark2).length === 0) {
+                        board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
+                        setTimeout(() => {
+                            threePageFour();
+                        }, 2000);
+                    }
+                }
+                if (toRches2 === "reDoTorch3") {
+                    board4Drops.removeChild(reDo3);
+                    delete dark2.reDoTorch3;
+                    if (Object.keys(dark2).length === 0) {
+                        board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
+                        setTimeout(() => {
+                            threePageFour();
+                        }, 2000);
+                    }
+                }
+            }
+        }
+    }
+}
+
+function threePageFour() {
+    pageButtonsDiv.innerHTML = '';
+    bats.style.display = 'none';
+    board4Img.style.backgroundImage = "url('./assets/imgs/second-final.jpeg')"
+    pageButtonsDiv.appendChild(fourth);
+    dialogConvo.log50();
+    notebookConvo.note11();
+    dialogConvo.log47();
+}
+
+function batGun() {
+    newHealth(ouch);
+    dialogConvo.log41();
+    notebookConvo.note13();
+    reDoTorches();
+}
+
+function batTorch() {
+    if (inventory.hasOwnProperty('glasses')) {
+        dialogConvo.log33();
+        notebookConvo.note5();
+    } else {
+        newHealth(lightDam);
+    }
+    if (inventory.hasOwnProperty('lighter')) {
+        notebookConvo.note14();
+        dialogConvo.log42();
+        threePageFour();
+    } else {
+        dialogConvo.log43();
+        reDoTorches();
+    }
+}
+
+function batRun() {
+    dialogConvo.log44();
+    if (inventory.hasOwnProperty('glasses')) {
+        dialogConvo.log33();
+        notebookConvo.note5();
+    } else {
+        newHealth(medDam);
+    }
+    reDoTorches();
 }
 
 //          CHAPTER FOUR FUNCTIONS
@@ -2063,6 +2042,7 @@ function newHealth(change) {
         alert('YOU HAVE DIED');
         location.reload();
     } else if (health < 25) {
+        healthLabel.style.color = "red";
         if (inventory.hasOwnProperty('apple')) {
             alert("You should eat your Apple!! You're health is getting low!!");
         }
@@ -2089,9 +2069,9 @@ function secretCounter(string) {
     } else if (string.innerText.length > 400) {
         notebookText.appendChild(lineBreak("\nOLD NOTES!!\nHINT: The wind always tames the water.\n"));
         notebookText.scrollTop = notebookText.scrollHeight;
-    } else if (string.innerText.length > 200) {
+    } else if (string.innerText.length > 225) {
         return;
-    } else if (string.innerText.length > 150) {
+    } else if (string.innerText.length > 175) {
         notebookText.appendChild(lineBreak("\nOLD NOTES!!\nHINT: I never liked working with Dr. OtherPerson, why am I going?\n"));
         notebookText.scrollTop = notebookText.scrollHeight;
     }
