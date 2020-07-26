@@ -83,6 +83,97 @@ let merFinal = false;
 let drFinal = false;
 
 // CHAPTER BUTTONS AND THINGS
+// THE OFFICE
+const chapterTwoBtn = document.createElement('button');
+chapterTwoBtn.setAttribute('class', 'buttons');
+chapterTwoBtn.setAttribute('id', 'chapterTwo');
+chapterTwoBtn.innerText = "Chapter: 2";
+chapterTwoBtn.addEventListener('click', chapterTwo);
+
+const pageTwoBtn = document.createElement('button');
+pageTwoBtn.setAttribute('class', 'buttons');
+pageTwoBtn.innerText = "Page: 2";
+pageTwoBtn.addEventListener('click', pageTwo);
+const pageThreeBtn = document.createElement('button');
+pageThreeBtn.setAttribute('class', 'buttons');
+pageThreeBtn.innerText = "Page: 3";
+pageThreeBtn.addEventListener('click', pageThree);
+
+// CAVE CONVO
+const twoPageTwo = document.createElement('button');
+twoPageTwo.setAttribute('class', 'buttons');
+twoPageTwo.setAttribute('id', 'buttonTwo');
+twoPageTwo.innerText = 'Page: 2';
+twoPageTwo.addEventListener('click', twoPageThree);
+const twoPageFourBtn = document.createElement('button');
+twoPageFourBtn.setAttribute('class', 'buttons');
+twoPageFourBtn.setAttribute('id', 'buttonThree');
+twoPageFourBtn.innerText = 'Page: 3';
+twoPageFourBtn.addEventListener('click', twoPageFour);
+
+const yes = document.createElement('button');
+yes.setAttribute('class', 'buttons');
+yes.setAttribute('id', 'tradeGun');
+yes.addEventListener('click', tradeGun);
+yes.innerText = "Yes. Trade gun for rock";
+const no = document.createElement('button');
+no.setAttribute('class', 'buttons');
+no.setAttribute('id', 'noTradeGun');
+no.addEventListener('click', noTradeGun);
+no.innerText = "No. Do not trade the gun";
+
+// ENTRANCE RIDDLE
+const ridWind = document.createElement('button');
+ridWind.setAttribute('class', 'buttons');
+ridWind.setAttribute('id', 'ridWind');
+ridWind.addEventListener('click', correct);
+ridWind.innerText = "Wind";
+const ridWater = document.createElement('button');
+ridWater.setAttribute('class', 'buttons');
+ridWater.setAttribute('id', 'ridWater');
+ridWater.addEventListener('click', inCorrect);
+ridWater.innerText = "Water";
+const ridEarth = document.createElement('button');
+ridEarth.setAttribute('class', 'buttons');
+ridEarth.setAttribute('id', 'ridEarth');
+ridEarth.addEventListener('click', inCorrect);
+ridEarth.innerText = "Earth";
+const ridFire = document.createElement('button');
+ridFire.setAttribute('class', 'buttons');
+ridFire.setAttribute('id', 'ridFire');
+ridFire.addEventListener('click', inCorrect);
+ridFire.innerText = "Fire";
+
+// FIRST FLOOR
+const leftRoom = document.createElement('button');
+leftRoom.setAttribute('class', 'buttons');
+leftRoom.setAttribute('id', 'leftroom');
+leftRoom.innerText = 'Left Room';
+leftRoom.addEventListener('click', roomOnTheLeft);
+const rightRoom = document.createElement('button');
+rightRoom.setAttribute('class', 'buttons');
+rightRoom.setAttribute('id', 'rightroom');
+rightRoom.innerText = 'Right Room';
+rightRoom.addEventListener('click', roomOnTheRight);
+const middleRoom = document.createElement('button');
+middleRoom.setAttribute('class', 'buttons');
+middleRoom.setAttribute('id', 'mainroom');
+middleRoom.innerText = 'Main Room';
+middleRoom.addEventListener('click', roomInTheMiddle);
+
+const chapterThreeBtn = document.createElement('button');
+chapterThreeBtn.setAttribute('class', 'buttons');
+chapterThreeBtn.setAttribute('id', 'chapThreeBtn');
+chapterThreeBtn.innerText = 'Chapter: 3';
+chapterThreeBtn.addEventListener('click', chapterThree);
+
+// TORCH ROOM
+const torchRoom = document.createElement('button');
+torchRoom.setAttribute('class', 'buttons');
+torchRoom.setAttribute('id', 'torchRoomBtn');
+torchRoom.innerText = "Page: 2"
+torchRoom.addEventListener('click', inTorchRoom);
+
 // BAT OPTIONS
 const youShoot = document.createElement('button');
 youShoot.setAttribute('class', 'buttons');
@@ -99,6 +190,13 @@ useTorch.setAttribute('class', 'buttons');
 useTorch.setAttribute('id', 'torchBats');
 useTorch.addEventListener('click', batTorch);
 useTorch.innerText = "Wave torch around";
+
+// TORCHES AGAIN
+const newButton = document.createElement('button');
+newButton.addEventListener('click', inTorchRoomAgain);
+newButton.setAttribute('class', 'buttons');
+newButton.setAttribute('id', 'reDo');
+newButton.innerText = "Try Again";
 
 // 4
 const fourth = document.createElement('button');
@@ -260,16 +358,11 @@ run50Gun.setAttribute('id', 'run50GunBtn');
 run50Gun.innerText = 'Try to run';
 run50Gun.addEventListener('click', iRunGun);
 
-
 //          CHAPTERS
 //  CHAPTER ONE
 function chapterOne() {
     forReset = true;
     startButton.innerText = 'Reset';
-    const pageTwoBtn = document.createElement('button');
-    pageTwoBtn.setAttribute('class', 'buttons');
-    pageTwoBtn.innerText = "Page: 2";
-    pageTwoBtn.addEventListener('click', pageTwo);
     board4Img.style.backgroundImage = "url('./assets/imgs/first-morning.jpeg')";
     alert("Look for all messages to appear in the 'Dialog' box at the bottom of the screen");
     dialogConvo.log1();
@@ -280,76 +373,7 @@ function chapterOne() {
         dialogConvo.log3();
         dialogConvo.log4();
         pageButtonsDiv.appendChild(pageTwoBtn);
-    }, 5000);
-    const pageThreeBtn = document.createElement('button');
-    pageThreeBtn.setAttribute('class', 'buttons');
-    pageThreeBtn.innerText = "Page: 3";
-    pageThreeBtn.addEventListener('click', pageThree);
-    function pageTwo () {
-        dialogBoxDiv.innerText = '';
-        pageTwoBtn.removeEventListener('click', pageTwo);
-        board4Img.style.backgroundImage = "url('./assets/imgs/old-letter.jpg')";
-        setTimeout(() => {
-            dialogConvo.log5();
-        }, 2000);
-        setTimeout(() => {
-            dialogConvo.log6();
-            pageButtonsDiv.appendChild(pageThreeBtn);
-        }, 4000);
-        dialogBoxDiv.innerText = '';
-    }
-    const chapterTwoBtn = document.createElement('button');
-    chapterTwoBtn.setAttribute('class', 'buttons');
-    chapterTwoBtn.setAttribute('id', 'chapterTwo');
-    chapterTwoBtn.innerText = "Chapter: 2";
-    chapterTwoBtn.addEventListener('click', chapterTwo);
-    function pageThree() {
-        pageThreeBtn.removeEventListener('click', pageThree);
-        board4Img.style.backgroundImage = "url('./assets/imgs/the-office.jpeg')";
-        dialogConvo.log7();
-        document.addEventListener('keydown', officeInvent);
-        for (let item in office) {
-            office[item].style.display = "inline-block";
-            office[item].addEventListener('click', function(e) {
-                if (e.detail === 1) {
-                    if (office[item] === magnifyingGlass) {
-                        dialogConvo.log8();
-                    } else if (office[item] === notebook) {
-                        dialogConvo.log9();
-                    } else if (office[item] === luckyCoin) {
-                        dialogConvo.log10();
-                    } else if (office[item] === lighter) {
-                        dialogConvo.log11();
-                    } else if (office[item] === glasses) {
-                        dialogConvo.log12();
-                    } else if (office[item] === apple) {
-                        dialogConvo.log13();
-                    } else if (office[item] === gun) {
-                        dialogConvo.log14();
-                    }
-                } else if (e.detail === 2) {
-                    if (Object.keys(inventory).length < 3) {
-                        officeCounter += 1;
-                        office[item].style.position = "static";
-                        inventory[item] = office[item];
-                        office[item] = null;
-                        inventoryDiv.appendChild(inventory[item]);
-                        if (officeCounter === 3) {
-                            pageButtonsDiv.appendChild(chapterTwoBtn);
-                        }
-                    } else {
-                        dialogConvo.log15();
-                    }
-                } 
-            });
-        };
-        setTimeout(() => {
-            dialogConvo.log16();
-        }, 3000);
-        setTimeout(() => {
-            dialogConvo.log17();
-        }, 10000)
-    }
+    }, 3000);
 }
 
 //  CHAPTER TWO
@@ -367,7 +391,6 @@ function chapterTwo() {
             notebookConvo.note1();
         }
     }
-    const chapterTwoBtn = document.querySelector('#chapterTwo');
     chapterTwoBtn.removeEventListener('click', chapterTwo);
     dialogBoxDiv.innerText = '';
     pageButtonsDiv.innerHTML = '';
@@ -375,137 +398,19 @@ function chapterTwo() {
     dialogConvo.log18();
     setTimeout(() => {
         twoPageOne();
-    }, 4000);
-    const twoPageTwo = document.createElement('button');
-    twoPageTwo.setAttribute('class', 'buttons');
-    twoPageTwo.setAttribute('id', 'buttonTwo');
-    twoPageTwo.innerText = 'Page: 2';
-    twoPageTwo.addEventListener('click', twoPageThree);
-    apple.addEventListener('click', eatingApple)
-    function twoPageOne() {
         board4Img.style.backgroundImage = "url('./assets/imgs/cave-morning.jpeg')";
-        if (inventory.hasOwnProperty("magnifyingGlass")) {
-            dialogConvo.log19();
-            notebookConvo.note2();
-        }
-        for (let person in people) {
-            people[person].style.display = "inline-block";
-            people[person].addEventListener('click', (event) => caveConvo(event, person));
-        }
-        function returnToChapter() {
-            setTimeout(() => {
-                if (inventory.hasOwnProperty("rock")) {
-                    dialogConvo.log24();
-                    notebookConvo.note12();
-                }
-            }, 2000);
-            setTimeout(() => {
-                if (inventory.hasOwnProperty("glasses") && inventory.hasOwnProperty("rock")) {
-                    dialogConvo.log25();
-                    notebookConvo.note3();
-                } else if (inventory.hasOwnProperty("glasses")) {
-                    dialogConvo.log26();
-                    notebookConvo.note3();
-                }
-                pageButtonsDiv.appendChild(twoPageTwo);
-            }, 3000);
-        }
-        chapterTwo.returnToChapter = returnToChapter;
-    }
-    const twoPageFourBtn = document.createElement('button');
-    twoPageFourBtn.setAttribute('class', 'buttons');
-    twoPageFourBtn.setAttribute('id', 'buttonThree');
-    twoPageFourBtn.innerText = 'Page: 3';
-    twoPageFourBtn.addEventListener('click', twoPageFour);
-    function twoPageThree() {
-        dialogBoxDiv.innerText = '';
-        board4Img.style.backgroundImage = "url('./assets/imgs/the-entrance.jpeg')";
-        let twoPageTwo = document.querySelector('#buttonTwo');
-        twoPageTwo.removeEventListener('click', twoPageThree);
-        for (let person in people) {
-            people[person].style.display = "none";
-            people[person].removeEventListener('click', caveConvo);
-        }
-        setTimeout(() => {
-            dialogConvo.log27();
-            setTimeout(() => {
-                setTimeout(() => {
-                    if (inventory.hasOwnProperty("magnifyingGlass") || inventory.hasOwnProperty("luckyCoin")) {
-                        dialogConvo.log28();
-                        notebookConvo.note4();
-                    }
-                }, 1000);
-                setTimeout(() => {
-                    entranceRiddle();
-                }, 2000);
-            }, 2000);
-        },3000);
-    }
-    const leftRoom = document.createElement('button');
-    leftRoom.setAttribute('class', 'buttons');
-    leftRoom.setAttribute('id', 'leftroom');
-    leftRoom.innerText = 'Left Room';
-    leftRoom.addEventListener('click', roomOnTheLeft);
-    const rightRoom = document.createElement('button');
-    rightRoom.setAttribute('class', 'buttons');
-    rightRoom.setAttribute('id', 'rightroom');
-    rightRoom.innerText = 'Right Room';
-    rightRoom.addEventListener('click', roomOnTheRight);
-    const middleRoom = document.createElement('button');
-    middleRoom.setAttribute('class', 'buttons');
-    middleRoom.setAttribute('id', 'mainroom');
-    middleRoom.innerText = 'Main Room';
-    middleRoom.addEventListener('click', roomInTheMiddle);
-    chapterTwo.twoPageFour = twoPageFour;
-    function twoPageFour() {
-        pageButtonsDiv.innerHTML = '';
-        dialogBoxDiv.innerText = '';
-        board4Img.style.backgroundImage = "url('./assets/imgs/first-middle.jpeg')";
-        pageButtonsDiv.appendChild(middleRoom);
-        pageButtonsDiv.appendChild(leftRoom);
-        pageButtonsDiv.appendChild(rightRoom);
-        board4Drops.appendChild(water);
-        water.addEventListener('click', grabWater);
-        board4Drops.appendChild(emptyWater);
-        emptyWater.addEventListener('click', placeWater);
-        dialogConvo.log30();
-        if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookConvo.note6();
-        }
-    }
+        apple.addEventListener('click', eatingApple);
+    }, 4000);
 }
 
 //  CHAPTER THREE
 function chapterThree() {
-    const removeThreeBtn = document.querySelector('#chapThreeBtn');
-    removeThreeBtn.removeEventListener('click', chapterThree);
-    pageButtonsDiv.removeChild(removeThreeBtn);
+    chapterThreeBtn.removeEventListener('click', chapterThree);
+    pageButtonsDiv.removeChild(chapterThreeBtn);
     board4Img.style.backgroundImage = "url('./assets/imgs/secondFloor.jpeg')";
     dialogConvo.log31();
     notebookConvo.note9();
-    const torchRoom = document.createElement('button');
-    torchRoom.setAttribute('class', 'buttons');
-    torchRoom.setAttribute('id', 'torchRoomBtn');
-    torchRoom.innerText = "Page: 2"
-    torchRoom.addEventListener('click', inTorchRoom);
     pageButtonsDiv.appendChild(torchRoom);
-    function threePageThree() {
-        dialogConvo.log39();
-        setTimeout(() => {
-            pageButtonsDiv.innerHTML = '';
-            bats.style.display = "inline-block"
-            dialogConvo.log40();
-            setTimeout(() => {
-                if (inventory.hasOwnProperty('gun')) {
-                    pageButtonsDiv.appendChild(youShoot);
-                    // NEW CONVO TO GET RID OF THE PROMPT
-                }
-                pageButtonsDiv.appendChild(useTorch);
-                pageButtonsDiv.appendChild(youRun);
-            }, 3000);
-        }, 3000);
-    }
-    chapterThree.threePageThree = threePageThree;
 }
 
 //  CHAPTER FOUR
@@ -540,75 +445,7 @@ function lastChapter() {
             drOther2.style.display = 'inline-block';
         }
     }, 3000);
-    function finalConvo(event, person2) {
-        if (!drFinal) {
-            if (event.detail === 1) {
-                if (person2 === "drOther2") {
-                    drFinal = true;
-                    dialogConvo.log71();
-                }
-            } else if (event.detail > 1) {
-                return;
-            }
-        }
-        if (!sciFinal) {
-            if (event.detail === 1) {
-                if (person2 === "scientist2") {
-                    sciFinal = true;
-                    dialogConvo.log74();
-                    pageButtonsDiv.appendChild(run50);
-                    if (inventory.hasOwnProperty("gun")) {
-                        notebookConvo.note24();
-                        dialogConvo.log70();
-                        pageButtonsDiv.appendChild(iHave);
-                    } else if (lastPeople.hasOwnProperty('gun')) {
-                        pageButtonsDiv.appendChild(run50Gun);
-                        pageButtonsDiv.removeChild(run50);
-                        if (inventory.hasOwnProperty('theKey')) {
-                            pageButtonsDiv.appendChild(finEleGun);
-                        } else if (lastPeople.hasOwnProperty('theKey')) {
-                            pageButtonsDiv.appendChild(finEleSciGun);
-                        }
-                        if (inventory.hasOwnProperty('luckyCoin') && inventory.hasOwnProperty('apple')) {
-                            pageButtonsDiv.appendChild(appCoinGun);
-                        }
-                    }
-                    if (inventory.hasOwnProperty('theKey')) {
-                        pageButtonsDiv.appendChild(finEle);
-                    } else if (lastPeople.hasOwnProperty('theKey')) {
-                        pageButtonsDiv.appendChild(finEleSci);
-                    }
-                    if (inventory.hasOwnProperty('luckyCoin') && inventory.hasOwnProperty('apple')) {
-                        pageButtonsDiv.appendChild(appCoin);
-                    }
-                }
-            } else if (event.detail > 1) {
-                return;
-            }
-        }
-        if (!merFinal) {
-            if (event.detail === 1) {
-                if (person2 === "mercenary2") {
-                    merFinal = true;
-                    dialogConvo.log72();
-                }
-            } else if (event.detail > 1) {
-                return;
-            }
-        }
-        if (drFinal) {
-            mercenary2.style.display = 'inline-block';
-        }
-        if (drFinal && merFinal) {
-            scientist2.style.display = 'inline-block';
-        }
-    }
 }
-
-
-
-
-
 
 
 
@@ -626,6 +463,68 @@ function goBackToOffice (item) {
     office[item] = inventory[item];
     office[item].style.position = "absolute";
     board4Drops.appendChild(office[item]);
+}
+
+function pageTwo () {
+    dialogBoxDiv.innerText = '';
+    pageTwoBtn.removeEventListener('click', pageTwo);
+    board4Img.style.backgroundImage = "url('./assets/imgs/old-letter.jpg')";
+    setTimeout(() => {
+        dialogConvo.log5();
+    }, 2000);
+    setTimeout(() => {
+        dialogConvo.log6();
+        pageButtonsDiv.appendChild(pageThreeBtn);
+    }, 4000);
+    dialogBoxDiv.innerText = '';
+}
+
+function pageThree() {
+    pageThreeBtn.removeEventListener('click', pageThree);
+    board4Img.style.backgroundImage = "url('./assets/imgs/the-office.jpeg')";
+    dialogConvo.log7();
+    document.addEventListener('keydown', officeInvent);
+    for (let item in office) {
+        office[item].style.display = "inline-block";
+        office[item].addEventListener('click', function(e) {
+            if (e.detail === 1) {
+                if (office[item] === magnifyingGlass) {
+                    dialogConvo.log8();
+                } else if (office[item] === notebook) {
+                    dialogConvo.log9();
+                } else if (office[item] === luckyCoin) {
+                    dialogConvo.log10();
+                } else if (office[item] === lighter) {
+                    dialogConvo.log11();
+                } else if (office[item] === glasses) {
+                    dialogConvo.log12();
+                } else if (office[item] === apple) {
+                    dialogConvo.log13();
+                } else if (office[item] === gun) {
+                    dialogConvo.log14();
+                }
+            } else if (e.detail === 2) {
+                if (Object.keys(inventory).length < 3) {
+                    officeCounter += 1;
+                    office[item].style.position = "static";
+                    inventory[item] = office[item];
+                    office[item] = null;
+                    inventoryDiv.appendChild(inventory[item]);
+                    if (officeCounter === 3) {
+                        pageButtonsDiv.appendChild(chapterTwoBtn);
+                    }
+                } else {
+                    dialogConvo.log15();
+                }
+            } 
+        });
+    };
+    setTimeout(() => {
+        dialogConvo.log16();
+    }, 3000);
+    setTimeout(() => {
+        dialogConvo.log17();
+    }, 10000)
 }
 
 //          CHAPTER TWO FUNCTIONS
@@ -657,18 +556,8 @@ function caveConvo(event, person) {
                 if (inventory.hasOwnProperty("gun")) {
                     dialogConvo.log22();
                     setTimeout(() => {
-                        let confirm = window.confirm("TRADE: Gun for a shiny rock?");
-                        if (confirm) {
-                            shinyRock.style.display = "inline-block";
-                            shinyRock.style.position = "static";
-                            inventory.rock = shinyRock;
-                            lastPeople.gun = gun;
-                            inventoryDiv.appendChild(shinyRock);
-                            inventoryDiv.removeChild(gun);
-                            delete inventory.gun;
-                        } else {
-                            dialogConvo.log23();
-                        }
+                        pageButtonsDiv.appendChild(yes);
+                        pageButtonsDiv.appendChild(no);
                     }, 3000);
                 }
             }
@@ -676,99 +565,123 @@ function caveConvo(event, person) {
             return;
         }
     }
-    if (sci && mer) {
-        chapterTwo.returnToChapter();
+    if (mer && sci) {
+        returnToChapter();
     }
 }
 
-function entranceRiddle() {
-    if (inventory.hasOwnProperty("luckyCoin") && inventory.hasOwnProperty("glasses")) {
-        let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.", "Ask Bilbo Baggins");
-        if (repsonse.match(/\b(\w*wind\w*)\b/gi)) {
-            dialogConvo.log29();
-            setTimeout(() => {
-                chapterTwo.twoPageFour();
-            }, 2000);
-        } else if (repsonse === null) {
-            notebookConvo.note5();
-            dialogConvo.log33();
-            setTimeout(() => {
-                entranceRiddle();
-            }, 2000);
-        } else {
-            notebookConvo.note5();
-            dialogConvo.log33();
-            setTimeout(() => {
-                entranceRiddle();
-            }, 2000);
+function tradeGun() {
+    shinyRock.style.display = "inline-block";
+    shinyRock.style.position = "static";
+    inventory.rock = shinyRock;
+    lastPeople.gun = gun;
+    inventoryDiv.appendChild(shinyRock);
+    inventoryDiv.removeChild(gun);
+    delete inventory.gun;
+    returnToChapter();
+}
+
+function noTradeGun() {
+    dialogConvo.log23();
+    returnToChapter();
+}
+
+function returnToChapter() {
+    pageButtonsDiv.innerHTML = '';
+    setTimeout(() => {
+        if (inventory.hasOwnProperty("rock")) {
+            dialogConvo.log24();
+            notebookConvo.note12();
         }
-    } else if (inventory.hasOwnProperty("luckyCoin")) {
-        let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.", "Ask Bilbo Baggins");
-        if (repsonse.match(/\b(\w*wind\w*)\b/gi)) {
-            dialogConvo.log29();
-            setTimeout(() => {
-                chapterTwo.twoPageFour();
-            }, 2000);
-        } else if (repsonse === null) {
-            dialogConvo.log34();
-            newHealth(lightDam);
-            setTimeout(() => {
-                entranceRiddle();
-            }, 2000);
-        } else {
-            dialogConvo.log34();
-            newHealth(lightDam);
-            setTimeout(() => {
-                entranceRiddle();
-            }, 2000);
-        } 
-    } else if (inventory.hasOwnProperty("glasses")) {
-        let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.");
-        if (repsonse.match(/\b(\w*wind\w*)\b/gi)) {
-            dialogConvo.log29();
-            setTimeout(() => {
-                chapterTwo.twoPageFour();
-            }, 2000);
-        } else if (repsonse === null) {
-            notebookConvo.note5();
-            dialogConvo.log33();
-            setTimeout(() => {
-                entranceRiddle();
-            }, 2000);
-        } else {
-            notebookConvo.note5();
-            dialogConvo.log33();
-            setTimeout(() => {
-                entranceRiddle();
-            }, 2000);
+    }, 2000);
+    setTimeout(() => {
+        if (inventory.hasOwnProperty("glasses") && inventory.hasOwnProperty("rock")) {
+            dialogConvo.log25();
+            notebookConvo.note3();
+        } else if (inventory.hasOwnProperty("glasses")) {
+            dialogConvo.log26();
+            notebookConvo.note3();
         }
-    } else {
-        let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.");
-        if (repsonse.match(/\b(\w*wind\w*)\b/gi)) {
-            dialogConvo.log29();
-            setTimeout(() => {
-                chapterTwo.twoPageFour();
-            }, 2000);
-        } else if (repsonse === null) {
-            dialogConvo.log34();
-            newHealth(lightDam);
-            setTimeout(() => {
-                entranceRiddle();
-            }, 2000);
-        } else {
-            dialogConvo.log34();
-            newHealth(lightDam);
-            setTimeout(() => {
-                entranceRiddle();
-            }, 2000);
-        }
+        pageButtonsDiv.appendChild(twoPageTwo);
+    }, 3000);
+}
+
+function twoPageOne() {
+    if (inventory.hasOwnProperty("magnifyingGlass")) {
+        dialogConvo.log19();
+        notebookConvo.note2();
+    }
+    for (let person in people) {
+        people[person].style.display = "inline-block";
+        people[person].addEventListener('click', (event) => caveConvo(event, person));
     }
 }
-const chapterThreeBtn = document.createElement('button');
-chapterThreeBtn.setAttribute('class', 'buttons');
-chapterThreeBtn.setAttribute('id', 'chapThreeBtn');
-chapterThreeBtn.innerText = 'Chapter: 3';
-chapterThreeBtn.addEventListener('click', chapterThree);
+
+function twoPageThree() {
+    dialogBoxDiv.innerText = '';
+    board4Img.style.backgroundImage = "url('./assets/imgs/the-entrance.jpeg')";
+    twoPageTwo.removeEventListener('click', twoPageThree);
+    for (let person in people) {
+        people[person].style.display = "none";
+        people[person].removeEventListener('click', caveConvo);
+    }
+    setTimeout(() => {
+        dialogConvo.log27();
+            if (inventory.hasOwnProperty("magnifyingGlass") || inventory.hasOwnProperty("luckyCoin")) {
+                dialogConvo.log28();
+                notebookConvo.note4();
+            }
+            setTimeout(() => {
+                entranceRiddle();
+            }, 3000);
+    },3000);
+}
+
+function entranceRiddle() {
+    pageButtonsDiv.innerHTML = '';
+    if (inventory.hasOwnProperty("luckyCoin")) {
+        // DIALOG THE RIDDLE SO THERE IS NO PROMPT FOR COIN AND W/O
+        // let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.", "Ask Bilbo Baggins");
+        pageButtonsDiv.appendChild(ridEarth);
+        pageButtonsDiv.appendChild(ridFire);
+        pageButtonsDiv.appendChild(ridWater);
+        pageButtonsDiv.appendChild(ridWind);
+    }
+}
+
+function correct() {
+    dialogConvo.log29();
+    setTimeout(() => {
+        twoPageFour();
+    }, 2000);
+}
+
+function inCorrect() {
+    if (inventory.hasOwnProperty("glasses")) {
+        notebookConvo.note5();
+        dialogConvo.log33();
+    } else {
+        dialogConvo.log34();
+        newHealth(lightDam);
+    }
+}
+
+function twoPageFour() {
+    pageButtonsDiv.innerHTML = '';
+    dialogBoxDiv.innerText = '';
+    board4Img.style.backgroundImage = "url('./assets/imgs/first-middle.jpeg')";
+    pageButtonsDiv.appendChild(middleRoom);
+    pageButtonsDiv.appendChild(leftRoom);
+    pageButtonsDiv.appendChild(rightRoom);
+    board4Drops.appendChild(water);
+    water.addEventListener('click', grabWater);
+    board4Drops.appendChild(emptyWater);
+    emptyWater.addEventListener('click', placeWater);
+    dialogConvo.log30();
+    if (inventory.hasOwnProperty('magnifyingGlass')) {
+        notebookConvo.note6();
+    }
+}
 
 function roomInTheMiddle() {
     for (let items in firstFloorItems) {
@@ -825,14 +738,7 @@ function grabWater() {
     inventoryDiv.appendChild(water);
     water.removeEventListener('click', grabWater);
     inventory.water = water;
-    if (inventory.hasOwnProperty('water')) {
-        const rmvBtnLeft = document.querySelector('#leftroom');
-        rmvBtnLeft.removeEventListener('click', roomOnTheLeft);
-    }
     delete firstFloorItems.water;
-    setTimeout(() => {
-        roomInTheMiddle();
-    }, 3000);
 }
 
 function placeWater() {
@@ -877,7 +783,7 @@ function inTorchRoom() {
                 if (Object.keys(dark).length === 0) {
                     board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
                     setTimeout(() => {
-                        chapterThree.threePageThree();
+                        threePageThree();
                     }, 3000);
                 } else {
                     dialogConvo.log38();
@@ -889,7 +795,7 @@ function inTorchRoom() {
                 if (Object.keys(dark).length === 0) {
                     board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
                     setTimeout(() => {
-                        chapterThree.threePageThree();
+                        threePageThree();
                     }, 3000);
                 } else {
                     dialogConvo.log38();
@@ -901,7 +807,7 @@ function inTorchRoom() {
                 if (Object.keys(dark).length === 0) {
                     board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
                     setTimeout(() => {
-                        chapterThree.threePageThree();
+                        threePageThree();
                     }, 3000);
                 } else {
                     dialogConvo.log38();
@@ -918,55 +824,67 @@ function reDoTorches() {
     }
     pageButtonsDiv.innerHTML = '';
     board4Img.style.backgroundImage = "url('./assets/imgs/secondFloor.jpeg')"
-    const newButton = document.createElement('button');
-    newButton.addEventListener('click', inTorchRoomAgain);
-    newButton.setAttribute('class', 'buttons');
-    newButton.setAttribute('id', 'reDo');
-    newButton.innerText = "Try Again";
     pageButtonsDiv.appendChild(newButton);
-    function inTorchRoomAgain() {
-        board4Drops.removeChild(bats);
-        pageButtonsDiv.removeChild(newButton);
-        board4Img.style.backgroundImage = "url('./assets/imgs/un-lit.png')";
-        for (let toRches2 in dark2) {
-            dark2[toRches2].style.display = "inline-block";
-            dark2[toRches2].addEventListener('click', (event) => countTorches2(event, toRches2));
-        }
-        function countTorches2(event, toRches2) {
-            if (event.detail === 1) {
-                if (toRches2 === "reDoTorch1") {
-                    board4Drops.removeChild(reDo1);
-                    delete dark2.reDoTorch1;
-                    if (Object.keys(dark2).length === 0) {
-                        board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
-                        setTimeout(() => {
-                            threePageFour();
-                        }, 2000);
-                    }
+}
+
+function inTorchRoomAgain() {
+    board4Drops.removeChild(bats);
+    pageButtonsDiv.removeChild(newButton);
+    board4Img.style.backgroundImage = "url('./assets/imgs/un-lit.png')";
+    for (let toRches2 in dark2) {
+        dark2[toRches2].style.display = "inline-block";
+        dark2[toRches2].addEventListener('click', (event) => countTorches2(event, toRches2));
+    }
+    function countTorches2(event, toRches2) {
+        if (event.detail === 1) {
+            if (toRches2 === "reDoTorch1") {
+                board4Drops.removeChild(reDo1);
+                delete dark2.reDoTorch1;
+                if (Object.keys(dark2).length === 0) {
+                    board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
+                    setTimeout(() => {
+                        threePageFour();
+                    }, 2000);
                 }
-                if (toRches2 === "reDoTorch2") {
-                    board4Drops.removeChild(reDo2);
-                    delete dark2.reDoTorch2;
-                    if (Object.keys(dark2).length === 0) {
-                        board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
-                        setTimeout(() => {
-                            threePageFour();
-                        }, 2000);
-                    }
+            }
+            if (toRches2 === "reDoTorch2") {
+                board4Drops.removeChild(reDo2);
+                delete dark2.reDoTorch2;
+                if (Object.keys(dark2).length === 0) {
+                    board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
+                    setTimeout(() => {
+                        threePageFour();
+                    }, 2000);
                 }
-                if (toRches2 === "reDoTorch3") {
-                    board4Drops.removeChild(reDo3);
-                    delete dark2.reDoTorch3;
-                    if (Object.keys(dark2).length === 0) {
-                        board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
-                        setTimeout(() => {
-                            threePageFour();
-                        }, 2000);
-                    }
+            }
+            if (toRches2 === "reDoTorch3") {
+                board4Drops.removeChild(reDo3);
+                delete dark2.reDoTorch3;
+                if (Object.keys(dark2).length === 0) {
+                    board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
+                    setTimeout(() => {
+                        threePageFour();
+                    }, 2000);
                 }
             }
         }
     }
+}
+
+function threePageThree() {
+    dialogConvo.log39();
+    setTimeout(() => {
+        pageButtonsDiv.innerHTML = '';
+        bats.style.display = "inline-block"
+        dialogConvo.log40();
+        setTimeout(() => {
+            if (inventory.hasOwnProperty('gun')) {
+                pageButtonsDiv.appendChild(youShoot);
+            }
+            pageButtonsDiv.appendChild(useTorch);
+            pageButtonsDiv.appendChild(youRun);
+        }, 3000);
+    }, 3000);
 }
 
 function threePageFour() {
@@ -1015,6 +933,73 @@ function batRun() {
 }
 
 //          CHAPTER FOUR FUNCTIONS
+function finalConvo(event, person2) {
+    if (!drFinal) {
+        if (event.detail === 1) {
+            if (person2 === "drOther2") {
+                drFinal = true;
+                dialogConvo.log71();
+            }
+        } else if (event.detail > 1) {
+            return;
+        }
+    }
+    if (!sciFinal) {
+        if (event.detail === 1) {
+            if (person2 === "scientist2") {
+                sciFinal = true;
+                dialogConvo.log74();
+                pageButtonsDiv.appendChild(run50);
+                if (inventory.hasOwnProperty("gun")) {
+                    notebookConvo.note24();
+                    dialogConvo.log70();
+                    pageButtonsDiv.appendChild(iHave);
+                } else if (lastPeople.hasOwnProperty('gun')) {
+                    pageButtonsDiv.appendChild(run50Gun);
+                    pageButtonsDiv.removeChild(run50);
+                    if (inventory.hasOwnProperty('theKey')) {
+                        pageButtonsDiv.removeChild(finEle);
+                        pageButtonsDiv.appendChild(finEleGun);
+                    } else if (lastPeople.hasOwnProperty('theKey')) {
+                        pageButtonsDiv.removeChild(finEleGun)
+                        pageButtonsDiv.appendChild(finEleSciGun);
+                    }
+                    if (inventory.hasOwnProperty('luckyCoin') && inventory.hasOwnProperty('apple')) {
+                        pageButtonsDiv.removeChild(appCoin);
+                        pageButtonsDiv.appendChild(appCoinGun);
+                    }
+                }
+                if (inventory.hasOwnProperty('theKey')) {
+                    pageButtonsDiv.appendChild(finEle);
+                } else if (lastPeople.hasOwnProperty('theKey')) {
+                    pageButtonsDiv.appendChild(finEleSci);
+                }
+                if (inventory.hasOwnProperty('luckyCoin') && inventory.hasOwnProperty('apple')) {
+                    pageButtonsDiv.appendChild(appCoin);
+                }
+            }
+        } else if (event.detail > 1) {
+            return;
+        }
+    }
+    if (!merFinal) {
+        if (event.detail === 1) {
+            if (person2 === "mercenary2") {
+                merFinal = true;
+                dialogConvo.log72();
+            }
+        } else if (event.detail > 1) {
+            return;
+        }
+    }
+    if (drFinal) {
+        mercenary2.style.display = 'inline-block';
+    }
+    if (drFinal && merFinal) {
+        scientist2.style.display = 'inline-block';
+    }
+}
+
 function wayOfFire() {
     board4Img.style.backgroundImage = "url('./assets/imgs/fire-intro.jpeg')";
     pageButtonsDiv.innerHTML = '';
@@ -1307,6 +1292,8 @@ function openDoor() {
         dialogConvo.log62();
         inventoryDiv.removeChild(luckyCoin);
         inventoryDiv.removeChild(shinyRock);
+        delete inventory.luckyCoin;
+        delete inventory.rock;
         eleKeyDrop.style.display = 'none';
         pageButtonsDiv.removeChild(final);
         pageButtonsDiv.appendChild(finalChapter);
@@ -1460,22 +1447,22 @@ function youVeWon() {
                                                         board4Img.style.backgroundImage = "url('./assets/imgs/the-office.jpeg')";
                                                         scientist2.style.display = 'inline-block';
                                                         setTimeout(() => {
-                                                            alert('YOUVE DONE IT');
+                                                            alert('YOUVE DONE IT! You and the scientist escaped.');
                                                             location.reload();
-                                                        }, 3000);
-                                                    }, 3000)
-                                                }, 3000);
-                                            }, 3000);
-                                        }, 3000);
-                                    }, 3000);
-                                }, 3000);
-                            }, 3000);
-                        }, 3000);
-                    }, 3000);
-                }, 3000);
-            }, 3000);
-        }, 3000);
-    }, 3000);
+                                                        }, 5000);
+                                                    }, 2000)
+                                                }, 2000);
+                                            }, 2000);
+                                        }, 2000);
+                                    }, 2000);
+                                }, 2000);
+                            }, 2000);
+                        }, 2000);
+                    }, 2000);
+                }, 2000);
+            }, 2000);
+        },2000);
+    }, 2000);
 }
 
 

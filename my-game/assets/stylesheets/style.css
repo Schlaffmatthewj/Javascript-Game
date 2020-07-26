@@ -47,6 +47,7 @@ main h1 {
     display: flex;
     position: relative;
     flex-wrap: wrap;
+    border-radius: 20px;
 }
 
 .notebook {
@@ -65,6 +66,7 @@ main h1 {
     overflow: scroll;
     background-color: white;
     font-size: 1.2em;
+    border-radius: 20px;
 }
 
 /*    THE GAMEBOARD AND THE DROPPABLES */
@@ -517,6 +519,10 @@ label {
 .buttons {
     height: 50px;
     border-radius: 20px;
+}
+
+#chapterTwo, #chapterThreeBtn, #fourth, #finalChapterBtn {
+    background-color: darkgreen;
 }
 
 .dialog {
