@@ -379,6 +379,7 @@ function chapterOne() {
 //  CHAPTER TWO
 function chapterTwo() {
     healthBarDiv.style.display = 'block';
+
     document.removeEventListener('keydown', officeInvent);
     for (let item in office) {
         if (office[item]) {
@@ -459,6 +460,13 @@ function officeInvent(e) {
     }
 }
 
+function clearInvent() {
+    for (let item in inventory) {
+        goBackToOffice(item);
+    }
+    inventory = {};
+}
+
 function goBackToOffice (item) {
     office[item] = inventory[item];
     office[item].style.position = "absolute";
@@ -483,9 +491,11 @@ function pageThree() {
     pageThreeBtn.removeEventListener('click', pageThree);
     board4Img.style.backgroundImage = "url('./assets/imgs/the-office.jpeg')";
     dialogConvo.log7();
+    document.addEventListener('volumechange', clearInvent);
     document.addEventListener('keydown', officeInvent);
     for (let item in office) {
         office[item].style.display = "inline-block";
+        office[item].addEventListener('pressHold', itemChecker)
         office[item].addEventListener('click', function(e) {
             if (e.detail === 1) {
                 if (office[item] === magnifyingGlass) {
@@ -524,7 +534,24 @@ function pageThree() {
     }, 3000);
     setTimeout(() => {
         dialogConvo.log17();
-    }, 10000)
+    }, 5000)
+}
+
+function itemChecker() {
+    for (let item in office) {
+        if (Object.keys(inventory).length < 3) {
+            officeCounter += 1;
+            office[item].style.position = "static";
+            inventory[item] = office[item];
+            office[item] = null;
+            inventoryDiv.appendChild(inventory[item]);
+            if (officeCounter === 3) {
+                pageButtonsDiv.appendChild(chapterTwoBtn);
+            }
+        } else {
+            dialogConvo.log15();
+        }
+    }
 }
 
 //          CHAPTER TWO FUNCTIONS
@@ -957,10 +984,10 @@ function finalConvo(event, person2) {
                 } else if (lastPeople.hasOwnProperty('gun')) {
                     pageButtonsDiv.appendChild(run50Gun);
                     pageButtonsDiv.removeChild(run50);
-                    if (inventory.hasOwnProperty('theKey')) {
+                    if (inventory.hasOwnProperty('theKey') && (inventory.hasOwnProperty('lighter'))) {
                         pageButtonsDiv.removeChild(finEle);
                         pageButtonsDiv.appendChild(finEleGun);
-                    } else if (lastPeople.hasOwnProperty('theKey')) {
+                    } else if (lastPeople.hasOwnProperty('theKey') && (inventory.hasOwnProperty('lighter'))) {
                         pageButtonsDiv.removeChild(finEleGun)
                         pageButtonsDiv.appendChild(finEleSciGun);
                     }
@@ -1497,7 +1524,7 @@ const dialogConvo = {
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log8() {
-        dialogBoxDiv.appendChild(lineBreak('\nMagnifying Glass: This will inspect every page of the story and give you clues.'));
+        dialogBoxDiv.appendChild(lineBreak('\nMagnifying Glass: This will inspect every chapter and some other pages of the story and give you clues.'));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log9() {
@@ -1513,11 +1540,11 @@ const dialogConvo = {
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log12() {
-        dialogBoxDiv.appendChild(lineBreak('\nGlasses: These serve more as hind-sight rather than needed to see and prevents minor damage.'));
+        dialogBoxDiv.appendChild(lineBreak('\nGlasses: These serve more as hind-sight and prevents minor damage.'));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log13() {
-        dialogBoxDiv.appendChild(lineBreak('\nApple: This will provide a small boost to health.'));
+        dialogBoxDiv.appendChild(lineBreak('\nApple: This will provide a small boost to health. Just clicking it once when in the inventory uses the Apple'));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log14() {
@@ -1525,7 +1552,7 @@ const dialogConvo = {
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log15() {
-        dialogBoxDiv.appendChild(lineBreak("\nYour Inventory is full. Try pressing 'q' to return the items from your Inventory to the office.\n You may also go to the next Chapter now."));
+        dialogBoxDiv.appendChild(lineBreak("\nYour Inventory is full. Try pressing 'q' to return the items from your Inventory to the office. Or use your volume button on your phone.\n You may also go to the next Chapter now."));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log16() {
