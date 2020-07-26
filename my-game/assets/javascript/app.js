@@ -495,7 +495,7 @@ function pageThree() {
     document.addEventListener('keydown', officeInvent);
     for (let item in office) {
         office[item].style.display = "inline-block";
-        office[item].addEventListener('pressHold', itemChecker)
+        office[item].addEventListener('pressHold', itemChecker, false);
         office[item].addEventListener('click', function(e) {
             if (e.detail === 1) {
                 if (office[item] === magnifyingGlass) {
@@ -537,7 +537,7 @@ function pageThree() {
     }, 5000)
 }
 
-function itemChecker() {
+function itemChecker(e) {
     for (let item in office) {
         if (Object.keys(inventory).length < 3) {
             officeCounter += 1;
