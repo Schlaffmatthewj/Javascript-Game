@@ -916,6 +916,7 @@ function reDoTorches() {
         notebookConvo.note15();
         dialogConvo.log46();
     }
+    pageButtonsDiv.innerHTML = '';
     board4Img.style.backgroundImage = "url('./assets/imgs/secondFloor.jpeg')"
     const newButton = document.createElement('button');
     newButton.addEventListener('click', inTorchRoomAgain);
