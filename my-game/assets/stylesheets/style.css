@@ -4,6 +4,7 @@ body {
     display: flex;
     justify-content: center;
     background-color: black;
+    height: 100%;
 }
 
 main {
@@ -66,7 +67,6 @@ main h1 {
     overflow: scroll;
     background-color: white;
     font-size: 1.2em;
-    border-radius: 20px;
 }
 
 /*    THE GAMEBOARD AND THE DROPPABLES */

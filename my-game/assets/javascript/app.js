@@ -495,7 +495,22 @@ function pageThree() {
     document.addEventListener('keydown', officeInvent);
     for (let item in office) {
         office[item].style.display = "inline-block";
-        office[item].addEventListener('pressHold', itemChecker, false);
+        office[item].addEventListener('pressHold', function(e) {
+            for (let item in office) {
+                if (Object.keys(inventory).length < 3) {
+                    officeCounter += 1;
+                    office[item].style.position = "static";
+                    inventory[item] = office[item];
+                    office[item] = null;
+                    inventoryDiv.appendChild(inventory[item]);
+                    if (officeCounter === 3) {
+                        pageButtonsDiv.appendChild(chapterTwoBtn);
+                    }
+                } else {
+                    dialogConvo.log15();
+                }
+            }
+        }, false);
         office[item].addEventListener('click', function(e) {
             if (e.detail === 1) {
                 if (office[item] === magnifyingGlass) {
@@ -535,23 +550,6 @@ function pageThree() {
     setTimeout(() => {
         dialogConvo.log17();
     }, 5000)
-}
-
-function itemChecker(e) {
-    for (let item in office) {
-        if (Object.keys(inventory).length < 3) {
-            officeCounter += 1;
-            office[item].style.position = "static";
-            inventory[item] = office[item];
-            office[item] = null;
-            inventoryDiv.appendChild(inventory[item]);
-            if (officeCounter === 3) {
-                pageButtonsDiv.appendChild(chapterTwoBtn);
-            }
-        } else {
-            dialogConvo.log15();
-        }
-    }
 }
 
 //          CHAPTER TWO FUNCTIONS
