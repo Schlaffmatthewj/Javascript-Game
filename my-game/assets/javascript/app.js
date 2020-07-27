@@ -358,8 +358,9 @@ run50Gun.setAttribute('id', 'run50GunBtn');
 run50Gun.innerText = 'Try to run';
 run50Gun.addEventListener('click', iRunGun);
 
+
 //          CHAPTERS
-//  CHAPTER ONE
+//          CHAPTER ONE
 function chapterOne() {
     forReset = true;
     startButton.innerText = 'Reset';
@@ -375,81 +376,6 @@ function chapterOne() {
         pageButtonsDiv.appendChild(pageTwoBtn);
     }, 3000);
 }
-
-//  CHAPTER TWO
-function chapterTwo() {
-    healthBarDiv.style.display = 'block';
-
-    document.removeEventListener('keydown', officeInvent);
-    for (let item in office) {
-        if (office[item]) {
-            office[item].style.display = "none";
-        }
-    }
-    for (let items in inventory) {
-        if (inventory[items] === notebook) {
-            notebookConvo.activate();
-            notebookConvo.note1();
-        }
-    }
-    chapterTwoBtn.removeEventListener('click', chapterTwo);
-    dialogBoxDiv.innerText = '';
-    pageButtonsDiv.innerHTML = '';
-    board4Img.style.backgroundImage = "url('./assets/imgs/traveling.jpeg')";
-    dialogConvo.log18();
-    setTimeout(() => {
-        twoPageOne();
-        board4Img.style.backgroundImage = "url('./assets/imgs/cave-morning.jpeg')";
-        apple.addEventListener('click', eatingApple);
-    }, 4000);
-}
-
-//  CHAPTER THREE
-function chapterThree() {
-    chapterThreeBtn.removeEventListener('click', chapterThree);
-    pageButtonsDiv.removeChild(chapterThreeBtn);
-    board4Img.style.backgroundImage = "url('./assets/imgs/secondFloor.jpeg')";
-    dialogConvo.log31();
-    notebookConvo.note9();
-    pageButtonsDiv.appendChild(torchRoom);
-}
-
-//  CHAPTER FOUR
-function chapterFour(){
-    pageButtonsDiv.innerHTML = '';
-    dialogBoxDiv.innerText = '';
-    board4Img.style.backgroundImage = "url('./assets/imgs/third-first.png')";
-    dialogConvo.log49();
-    setTimeout(() => {
-        dialogConvo.log48();
-        notebookConvo.note16();
-        dialogConvo.log69();
-        board4Img.style.backgroundImage = "url('./assets/imgs/corridor.jpeg')";
-        setTimeout(() => {
-            pageButtonsDiv.appendChild(fire);
-            pageButtonsDiv.appendChild(waterWay);
-            pageButtonsDiv.appendChild(earth);
-            pageButtonsDiv.appendChild(air);
-            pageButtonsDiv.appendChild(final);
-        }, 3000);
-    }, 5000);
-}
-
-//  FINAL CHAPTER
-function lastChapter() {
-    board4Img.style.backgroundImage = 'url("./assets/imgs/final-tree.jpeg")';
-    pageButtonsDiv.innerHTML = '';
-    dialogConvo.innerText = '';
-    setTimeout(() => {
-        for (let person2 in lastPeople) {
-            lastPeople[person2].addEventListener('click', (event) => finalConvo(event, person2));
-            drOther2.style.display = 'inline-block';
-        }
-    }, 3000);
-}
-
-
-
 //          CHAPTER ONE FUNCTIONs
 function officeInvent(e) {
     if (e.keyCode == 113 || e.keyCode == 81) {
@@ -460,13 +386,6 @@ function officeInvent(e) {
     }
 }
 
-function clearInvent() {
-    for (let item in inventory) {
-        goBackToOffice(item);
-    }
-    inventory = {};
-}
-
 function goBackToOffice (item) {
     office[item] = inventory[item];
     office[item].style.position = "absolute";
@@ -474,7 +393,6 @@ function goBackToOffice (item) {
 }
 
 function pageTwo () {
-    dialogBoxDiv.innerText = '';
     pageTwoBtn.removeEventListener('click', pageTwo);
     board4Img.style.backgroundImage = "url('./assets/imgs/old-letter.jpg')";
     setTimeout(() => {
@@ -484,33 +402,15 @@ function pageTwo () {
         dialogConvo.log6();
         pageButtonsDiv.appendChild(pageThreeBtn);
     }, 4000);
-    dialogBoxDiv.innerText = '';
 }
 
 function pageThree() {
     pageThreeBtn.removeEventListener('click', pageThree);
     board4Img.style.backgroundImage = "url('./assets/imgs/the-office.jpeg')";
     dialogConvo.log7();
-    document.addEventListener('volumechange', clearInvent);
     document.addEventListener('keydown', officeInvent);
     for (let item in office) {
         office[item].style.display = "inline-block";
-        office[item].addEventListener('pressHold', function(e) {
-            for (let item in office) {
-                if (Object.keys(inventory).length < 3) {
-                    officeCounter += 1;
-                    office[item].style.position = "static";
-                    inventory[item] = office[item];
-                    office[item] = null;
-                    inventoryDiv.appendChild(inventory[item]);
-                    if (officeCounter === 3) {
-                        pageButtonsDiv.appendChild(chapterTwoBtn);
-                    }
-                } else {
-                    dialogConvo.log15();
-                }
-            }
-        }, false);
         office[item].addEventListener('click', function(e) {
             if (e.detail === 1) {
                 if (office[item] === magnifyingGlass) {
@@ -541,18 +441,56 @@ function pageThree() {
                 } else {
                     dialogConvo.log15();
                 }
-            } 
+            }
         });
     };
     setTimeout(() => {
+        pageButtonsDiv.appendChild(chapterTwoBtn); 
         dialogConvo.log16();
-    }, 3000);
+    }, 2000);
     setTimeout(() => {
         dialogConvo.log17();
-    }, 5000)
+    }, 3000)
 }
 
+//          CHAPTER TWO
+function chapterTwo() {
+    chapterTwoBtn.removeEventListener('click', chapterTwo);
+    document.removeEventListener('keydown', officeInvent);
+    dialogBoxDiv.innerText = '';
+    pageButtonsDiv.innerHTML = '';
+    board4Img.style.backgroundImage = "url('./assets/imgs/traveling.jpeg')";
+    healthBarDiv.style.display = 'block';
+    for (let item in office) {
+        if (office[item]) {
+            office[item].style.display = "none";
+        }
+    }
+    for (let items in inventory) {
+        if (inventory[items] === notebook) {
+            notebookConvo.activate();
+            notebookConvo.note1();
+        }
+    }
+    dialogConvo.log18();
+    setTimeout(() => {
+        twoPageOne();
+        board4Img.style.backgroundImage = "url('./assets/imgs/cave-morning.jpeg')";
+        apple.addEventListener('click', eatingApple);
+    }, 4000);
+}
 //          CHAPTER TWO FUNCTIONS
+function twoPageOne() {
+    if (inventory.hasOwnProperty("magnifyingGlass")) {
+        dialogConvo.log19();
+        notebookConvo.note2();
+    }
+    for (let person in people) {
+        people[person].style.display = "inline-block";
+        people[person].addEventListener('click', (event) => caveConvo(event, person));
+    }
+}
+
 function caveConvo(event, person) {
     if (!sci) {
         if (event.detail === 1) {
@@ -618,7 +556,7 @@ function returnToChapter() {
             dialogConvo.log24();
             notebookConvo.note12();
         }
-    }, 2000);
+    }, 1000);
     setTimeout(() => {
         if (inventory.hasOwnProperty("glasses") && inventory.hasOwnProperty("rock")) {
             dialogConvo.log25();
@@ -628,22 +566,10 @@ function returnToChapter() {
             notebookConvo.note3();
         }
         pageButtonsDiv.appendChild(twoPageTwo);
-    }, 3000);
-}
-
-function twoPageOne() {
-    if (inventory.hasOwnProperty("magnifyingGlass")) {
-        dialogConvo.log19();
-        notebookConvo.note2();
-    }
-    for (let person in people) {
-        people[person].style.display = "inline-block";
-        people[person].addEventListener('click', (event) => caveConvo(event, person));
-    }
+    }, 2000);
 }
 
 function twoPageThree() {
-    dialogBoxDiv.innerText = '';
     board4Img.style.backgroundImage = "url('./assets/imgs/the-entrance.jpeg')";
     twoPageTwo.removeEventListener('click', twoPageThree);
     for (let person in people) {
@@ -652,25 +578,25 @@ function twoPageThree() {
     }
     setTimeout(() => {
         dialogConvo.log27();
-            if (inventory.hasOwnProperty("magnifyingGlass") || inventory.hasOwnProperty("luckyCoin")) {
-                dialogConvo.log28();
-                notebookConvo.note4();
-            }
-            setTimeout(() => {
-                entranceRiddle();
-            }, 3000);
-    },3000);
+        if (inventory.hasOwnProperty("magnifyingGlass") || inventory.hasOwnProperty("luckyCoin")) {
+            dialogConvo.log28();
+            notebookConvo.note4();
+        }
+        setTimeout(() => {
+            entranceRiddle();
+        }, 2000);
+    }, 2000);
 }
 
 function entranceRiddle() {
     pageButtonsDiv.innerHTML = '';
+    pageButtonsDiv.appendChild(ridEarth);
+    pageButtonsDiv.appendChild(ridFire);
+    pageButtonsDiv.appendChild(ridWater);
+    pageButtonsDiv.appendChild(ridWind);
     if (inventory.hasOwnProperty("luckyCoin")) {
         // DIALOG THE RIDDLE SO THERE IS NO PROMPT FOR COIN AND W/O
         // let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.", "Ask Bilbo Baggins");
-        pageButtonsDiv.appendChild(ridEarth);
-        pageButtonsDiv.appendChild(ridFire);
-        pageButtonsDiv.appendChild(ridWater);
-        pageButtonsDiv.appendChild(ridWind);
     }
 }
 
@@ -693,7 +619,6 @@ function inCorrect() {
 
 function twoPageFour() {
     pageButtonsDiv.innerHTML = '';
-    dialogBoxDiv.innerText = '';
     board4Img.style.backgroundImage = "url('./assets/imgs/first-middle.jpeg')";
     pageButtonsDiv.appendChild(middleRoom);
     pageButtonsDiv.appendChild(leftRoom);
@@ -704,7 +629,7 @@ function twoPageFour() {
     emptyWater.addEventListener('click', placeWater);
     dialogConvo.log30();
     if (inventory.hasOwnProperty('magnifyingGlass')) {
-        notebookConvo.note6();
+        // notebookConvo.note6();
     }
 }
 
@@ -734,7 +659,7 @@ function roomOnTheLeft() {
     }
     board4Img.style.backgroundImage = "url('./assets/imgs/first-left.jpeg')";
     if (inventory.hasOwnProperty('magnifyingGlass')) {
-        notebookConvo.note7();
+        // notebookConvo.note7();
         dialogConvo.log36();
     }
 }
@@ -749,7 +674,7 @@ function roomOnTheRight() {
     }
     board4Img.style.backgroundImage = "url('./assets/imgs/first-right.jpeg')";
     if (inventory.hasOwnProperty('magnifyingGlass')) {
-        notebookConvo.note8();
+        // notebookConvo.note8();
         dialogConvo.log37();
     }
 }
@@ -788,14 +713,22 @@ function placeWater() {
     }
 }
 
+//          CHAPTER THREE
+function chapterThree() {
+    chapterThreeBtn.removeEventListener('click', chapterThree);
+    pageButtonsDiv.removeChild(chapterThreeBtn);
+    board4Img.style.backgroundImage = "url('./assets/imgs/secondFloor.jpeg')";
+    dialogConvo.log31();
+    notebookConvo.note9();
+    pageButtonsDiv.appendChild(torchRoom);
+}
 //          CHAPTER THREE FUNCTIONS
 function inTorchRoom() {
     board4Img.style.backgroundImage = "url('./assets/imgs/un-lit.png')";
-    const unclickBtn = document.querySelector('#torchRoomBtn');
-    unclickBtn.removeEventListener('click', inTorchRoom);
-    pageButtonsDiv.removeChild(unclickBtn);
+    torchRoom.removeEventListener('click', inTorchRoom);
+    pageButtonsDiv.removeChild(torchRoom);
     dialogConvo.log32();
-    notebookConvo.note10();
+    // notebookConvo.note10();
     for (let toRches in dark) {
         dark[toRches].style.display = "inline-block";
         dark[toRches].addEventListener('click', (event) => countTorches(event, toRches));
@@ -842,9 +775,60 @@ function inTorchRoom() {
     }
 }
 
+function threePageThree() {
+    dialogConvo.log39();
+    setTimeout(() => {
+        pageButtonsDiv.innerHTML = '';
+        bats.style.display = "inline-block"
+        dialogConvo.log40();
+        setTimeout(() => {
+            if (inventory.hasOwnProperty('gun')) {
+                pageButtonsDiv.appendChild(youShoot);
+            }
+            pageButtonsDiv.appendChild(useTorch);
+            pageButtonsDiv.appendChild(youRun);
+        }, 3000);
+    }, 3000);
+}
+
+function batGun() {
+    newHealth(ouch);
+    dialogConvo.log41();
+    notebookConvo.note13();
+    reDoTorches();
+}
+
+function batTorch() {
+    if (inventory.hasOwnProperty('glasses')) {
+        dialogConvo.log33();
+        notebookConvo.note5();
+    } else {
+        newHealth(lightDam);
+    }
+    if (inventory.hasOwnProperty('lighter')) {
+        notebookConvo.note14();
+        dialogConvo.log42();
+        threePageFour();
+    } else {
+        dialogConvo.log43();
+        reDoTorches();
+    }
+}
+
+function batRun() {
+    dialogConvo.log44();
+    if (inventory.hasOwnProperty('glasses')) {
+        dialogConvo.log33();
+        notebookConvo.note5();
+    } else {
+        newHealth(medDam);
+    }
+    reDoTorches();
+}
+
 function reDoTorches() {
     if (inventory.hasOwnProperty('magnifyingGlass')) {
-        notebookConvo.note15();
+        // notebookConvo.note15();
         dialogConvo.log46();
     }
     pageButtonsDiv.innerHTML = '';
@@ -896,135 +880,37 @@ function inTorchRoomAgain() {
     }
 }
 
-function threePageThree() {
-    dialogConvo.log39();
-    setTimeout(() => {
-        pageButtonsDiv.innerHTML = '';
-        bats.style.display = "inline-block"
-        dialogConvo.log40();
-        setTimeout(() => {
-            if (inventory.hasOwnProperty('gun')) {
-                pageButtonsDiv.appendChild(youShoot);
-            }
-            pageButtonsDiv.appendChild(useTorch);
-            pageButtonsDiv.appendChild(youRun);
-        }, 3000);
-    }, 3000);
-}
-
 function threePageFour() {
     pageButtonsDiv.innerHTML = '';
     bats.style.display = 'none';
-    board4Img.style.backgroundImage = "url('./assets/imgs/second-final.jpeg')"
+    board4Img.style.backgroundImage = "url('./assets/imgs/second-final.jpeg')";
     pageButtonsDiv.appendChild(fourth);
     dialogConvo.log50();
     notebookConvo.note11();
     dialogConvo.log47();
 }
 
-function batGun() {
-    newHealth(ouch);
-    dialogConvo.log41();
-    notebookConvo.note13();
-    reDoTorches();
+//          CHAPTER FOUR
+function chapterFour(){
+    pageButtonsDiv.innerHTML = '';
+    dialogBoxDiv.innerText = '';
+    board4Img.style.backgroundImage = "url('./assets/imgs/third-first.png')";
+    dialogConvo.log49();
+    setTimeout(() => {
+        dialogConvo.log48();
+        notebookConvo.note16();
+        dialogConvo.log69();
+        board4Img.style.backgroundImage = "url('./assets/imgs/corridor.jpeg')";
+        setTimeout(() => {
+            pageButtonsDiv.appendChild(fire);
+            pageButtonsDiv.appendChild(waterWay);
+            pageButtonsDiv.appendChild(earth);
+            pageButtonsDiv.appendChild(air);
+            pageButtonsDiv.appendChild(final);
+        }, 3000);
+    }, 5000);
 }
-
-function batTorch() {
-    if (inventory.hasOwnProperty('glasses')) {
-        dialogConvo.log33();
-        notebookConvo.note5();
-    } else {
-        newHealth(lightDam);
-    }
-    if (inventory.hasOwnProperty('lighter')) {
-        notebookConvo.note14();
-        dialogConvo.log42();
-        threePageFour();
-    } else {
-        dialogConvo.log43();
-        reDoTorches();
-    }
-}
-
-function batRun() {
-    dialogConvo.log44();
-    if (inventory.hasOwnProperty('glasses')) {
-        dialogConvo.log33();
-        notebookConvo.note5();
-    } else {
-        newHealth(medDam);
-    }
-    reDoTorches();
-}
-
 //          CHAPTER FOUR FUNCTIONS
-function finalConvo(event, person2) {
-    if (!drFinal) {
-        if (event.detail === 1) {
-            if (person2 === "drOther2") {
-                drFinal = true;
-                dialogConvo.log71();
-            }
-        } else if (event.detail > 1) {
-            return;
-        }
-    }
-    if (!sciFinal) {
-        if (event.detail === 1) {
-            if (person2 === "scientist2") {
-                sciFinal = true;
-                dialogConvo.log74();
-                pageButtonsDiv.appendChild(run50);
-                if (inventory.hasOwnProperty("gun")) {
-                    notebookConvo.note24();
-                    dialogConvo.log70();
-                    pageButtonsDiv.appendChild(iHave);
-                } else if (lastPeople.hasOwnProperty('gun')) {
-                    pageButtonsDiv.appendChild(run50Gun);
-                    pageButtonsDiv.removeChild(run50);
-                    if (inventory.hasOwnProperty('theKey') && (inventory.hasOwnProperty('lighter'))) {
-                        pageButtonsDiv.removeChild(finEle);
-                        pageButtonsDiv.appendChild(finEleGun);
-                    } else if (lastPeople.hasOwnProperty('theKey') && (inventory.hasOwnProperty('lighter'))) {
-                        pageButtonsDiv.removeChild(finEleGun)
-                        pageButtonsDiv.appendChild(finEleSciGun);
-                    }
-                    if (inventory.hasOwnProperty('luckyCoin') && inventory.hasOwnProperty('apple')) {
-                        pageButtonsDiv.removeChild(appCoin);
-                        pageButtonsDiv.appendChild(appCoinGun);
-                    }
-                }
-                if (inventory.hasOwnProperty('theKey')) {
-                    pageButtonsDiv.appendChild(finEle);
-                } else if (lastPeople.hasOwnProperty('theKey')) {
-                    pageButtonsDiv.appendChild(finEleSci);
-                }
-                if (inventory.hasOwnProperty('luckyCoin') && inventory.hasOwnProperty('apple')) {
-                    pageButtonsDiv.appendChild(appCoin);
-                }
-            }
-        } else if (event.detail > 1) {
-            return;
-        }
-    }
-    if (!merFinal) {
-        if (event.detail === 1) {
-            if (person2 === "mercenary2") {
-                merFinal = true;
-                dialogConvo.log72();
-            }
-        } else if (event.detail > 1) {
-            return;
-        }
-    }
-    if (drFinal) {
-        mercenary2.style.display = 'inline-block';
-    }
-    if (drFinal && merFinal) {
-        scientist2.style.display = 'inline-block';
-    }
-}
-
 function wayOfFire() {
     board4Img.style.backgroundImage = "url('./assets/imgs/fire-intro.jpeg')";
     pageButtonsDiv.innerHTML = '';
@@ -1207,12 +1093,15 @@ function addToInvent(event) {
 function getKey(event) {
     if (event.target === eleFireDrop) {
         if (inventory.hasOwnProperty('theWater')) {
+            pageButtonsDiv.innerHTML = '';
+            fire.removeEventListener('click', wayOfFire);
             dialogConvo.log57();
             elementDropCount += 1;
             delete inventory.theWater;
             eleFireDrop.appendChild(eleWater);
             setTimeout(() => {
                 if (elementDropCount === 4) {
+                    notebookConvo.note22();
                     dialogConvo.log61();
                     dialogConvo.log67();
                     inventory.theKey = elemental.theKey;
@@ -1233,12 +1122,15 @@ function getKey(event) {
         }
     } else if (event.target === eleWindDrop) {
         if (inventory.hasOwnProperty('theEarth')) {
+            pageButtonsDiv.innerHTML = '';
+            fire.removeEventListener('click', wayOfAir);
             dialogConvo.log58();
             elementDropCount += 1;
             delete inventory.theEarth;
             eleWindDrop.appendChild(eleEarth);
             setTimeout(() => {
                 if (elementDropCount === 4) {
+                    notebookConvo.note22();
                     dialogConvo.log61();
                     dialogConvo.log67();
                     inventory.theKey = elemental.theKey;
@@ -1258,7 +1150,9 @@ function getKey(event) {
             newHealth(dam);
         }
     } else if (event.target === eleWaterDrop) {
+        pageButtonsDiv.innerHTML = '';
         if (inventory.hasOwnProperty('theWind')) {
+            fire.removeEventListener('click', wayOfWater);
             dialogConvo.log59();
             elementDropCount += 1;
             delete inventory.theWind;
@@ -1266,6 +1160,7 @@ function getKey(event) {
             setTimeout(() => {
                 if (elementDropCount === 4) {
                     dialogConvo.log61();
+                    notebookConvo.note22();
                     dialogConvo.log67();
                     inventory.theKey = elemental.theKey;
                     inventoryDiv.appendChild(eleKey);
@@ -1284,13 +1179,16 @@ function getKey(event) {
             newHealth(dam);
         }
     } else if (event.target === eleEarthDrop) {
+        pageButtonsDiv.innerHTML = '';
         if (inventory.hasOwnProperty('theFire')) {
+            fire.removeEventListener('click', wayOfEarth);
             dialogConvo.log60();
             elementDropCount += 1;
             delete inventory.theFire;
             eleEarthDrop.appendChild(eleFire);
             setTimeout(() => {
                 if (elementDropCount === 4) {
+                    notebookConvo.note22();
                     dialogConvo.log61();
                     dialogConvo.log67();
                     inventoryDiv.appendChild(eleKey);
@@ -1332,21 +1230,105 @@ function openDoor() {
         delete inventory.theKey;
     } else {
         dialogConvo.log34();
+        notebookConvo.note25();
         newHealth(ouch);
     }
 }
 
-// FINAL CHAPTER FUNCTIONS
+//          FINAL CHAPTER
+function lastChapter() {
+    board4Img.style.backgroundImage = 'url("./assets/imgs/final-tree.jpeg")';
+    pageButtonsDiv.innerHTML = '';
+    dialogConvo.innerText = '';
+    setTimeout(() => {
+        for (let person2 in lastPeople) {
+            lastPeople[person2].addEventListener('click', (event) => finalConvo(event, person2));
+            drOther2.style.display = 'inline-block';
+        }
+    }, 3000);
+}
+//          FINAL CHAPTER FUNCTIONS
+function finalConvo(event, person2) {
+    if (!drFinal) {
+        if (event.detail === 1) {
+            if (person2 === "drOther2") {
+                drFinal = true;
+                dialogConvo.log71();
+            }
+        } else if (event.detail > 1) {
+            return;
+        }
+    }
+    if (!sciFinal) {
+        if (event.detail === 1) {
+            if (person2 === "scientist2") {
+                sciFinal = true;
+                dialogConvo.log74();
+                pageButtonsDiv.appendChild(run50);
+                if (inventory.hasOwnProperty("gun")) {
+                    pageButtonsDiv.appendChild(iHave);
+                } else if (lastPeople.hasOwnProperty('gun')) {
+                    pageButtonsDiv.appendChild(run50Gun);
+                    pageButtonsDiv.removeChild(run50);
+                    if (inventory.hasOwnProperty('theKey') && (inventory.hasOwnProperty('lighter'))) {
+                        pageButtonsDiv.removeChild(finEle);
+                        pageButtonsDiv.appendChild(finEleGun);
+                    } else if (lastPeople.hasOwnProperty('theKey') && (inventory.hasOwnProperty('lighter'))) {
+                        pageButtonsDiv.removeChild(finEleGun)
+                        pageButtonsDiv.appendChild(finEleSciGun);
+                    }
+                    if (inventory.hasOwnProperty('luckyCoin') && inventory.hasOwnProperty('apple')) {
+                        pageButtonsDiv.removeChild(appCoin);
+                        pageButtonsDiv.appendChild(appCoinGun);
+                    }
+                }
+                if (inventory.hasOwnProperty('theKey')) {
+                    pageButtonsDiv.appendChild(finEle);
+                } else if (lastPeople.hasOwnProperty('theKey')) {
+                    pageButtonsDiv.appendChild(finEleSci);
+                }
+                if (inventory.hasOwnProperty('luckyCoin') && inventory.hasOwnProperty('apple')) {
+                    pageButtonsDiv.appendChild(appCoin);
+                }
+            }
+        } else if (event.detail > 1) {
+            return;
+        }
+    }
+    if (!merFinal) {
+        if (event.detail === 1) {
+            if (person2 === "mercenary2") {
+                merFinal = true;
+                dialogConvo.log72();
+            }
+        } else if (event.detail > 1) {
+            return;
+        }
+    }
+    if (drFinal) {
+        mercenary2.style.display = 'inline-block';
+    }
+    if (drFinal && merFinal) {
+        scientist2.style.display = 'inline-block';
+    }
+}
+
+
 function iUseGun() {
+    pageButtonsDiv.innerHTML = '';
     dialogConvo.log77();
+    notebookConvo.note24();
+    dialogConvo.log70();
     setTimeout(() => {
         youVeWon();
     }, 3000);
 }
 
 function iUseEle() {
+    pageButtonsDiv.innerHTML = '';
     dialogConvo.log76();
     dialogConvo.log73();
+    notebookConvo.note25();
     setTimeout(() => {
         newHealth(lightDam);
         setTimeout(() => {
@@ -1356,6 +1338,7 @@ function iUseEle() {
 }
 
 function iUseEleSci() {
+    pageButtonsDiv.innerHTML = '';
     dialogConvo.log78();
     dialogConvo.log73();
     setTimeout(() => {
@@ -1367,6 +1350,7 @@ function iUseEleSci() {
 }
 
 function iUseAppCoin() {
+    pageButtonsDiv.innerHTML = '';
     dialogConvo.log79();
     dialogConvo.log73();
     setTimeout(() => {
@@ -1378,6 +1362,7 @@ function iUseAppCoin() {
 }
 
 function iRun() {
+    pageButtonsDiv.innerHTML = '';
     dialogConvo.log80();
     dialogConvo.log73();
     setTimeout(() => {
@@ -1389,6 +1374,7 @@ function iRun() {
 }
 
 function iUseEleGun() {
+    pageButtonsDiv.innerHTML = '';
     dialogConvo.log73();
     dialogConvo.log76();
     dialogConvo.log81();
@@ -1401,6 +1387,7 @@ function iUseEleGun() {
 }
 
 function iUseEleSciGun() {
+    pageButtonsDiv.innerHTML = '';
     dialogConvo.log73();
     dialogConvo.log78();
     dialogConvo.log81();
@@ -1413,6 +1400,7 @@ function iUseEleSciGun() {
 }
 
 function iUseAppCoinGun() {
+    pageButtonsDiv.innerHTML = '';
     dialogConvo.log73();
     dialogConvo.log79();
     dialogConvo.log81();
@@ -1425,6 +1413,7 @@ function iUseAppCoinGun() {
 }
 
 function iRunGun() {
+    pageButtonsDiv.innerHTML = '';
     dialogConvo.log73();
     dialogConvo.log80();
     dialogConvo.log81();
@@ -1550,7 +1539,7 @@ const dialogConvo = {
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log15() {
-        dialogBoxDiv.appendChild(lineBreak("\nYour Inventory is full. Try pressing 'q' to return the items from your Inventory to the office. Or use your volume button on your phone.\n You may also go to the next Chapter now."));
+        dialogBoxDiv.appendChild(lineBreak("\nYour Inventory is full. Try pressing 'q' to return the items from your Inventory to the office.\n You may also go to the next Chapter now."));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log16() {
@@ -1826,11 +1815,11 @@ const dialogConvo = {
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight; 
     },
     log75() {
-        dialogBoxDiv.appendChild(lineBreak("\nElement: This is still seems like it is holding a lot of energy. I should use it."));
+        dialogBoxDiv.appendChild(lineBreak("\nElement: This seems like it is still holding a lot of energy. I should use it."));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight; 
     },
     log76() {
-        dialogBoxDiv.appendChild(lineBreak("\nElement: You Throw this Element towards Dr. OtherPerson and the Mecenary causing it to explode. You take a little damage and run."));
+        dialogBoxDiv.appendChild(lineBreak("\nLighter & the Elemental Key: You use your lighter to catch the final element on fire and then you throw it at the Dr and the Mercenary."));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight; 
     },
     log77() {
@@ -1884,14 +1873,18 @@ const notebookConvo = {
     },
     note3() {
         if (inventory.hasOwnProperty('rock') && inventory.hasOwnProperty('glasses')) {
-            notebookText.appendChild(lineBreak("\nGlasses: I wonder where Dr. OtherPerson was?\nGlasses & Rock: I have a good feeling about this trade."));
+            notebookText.appendChild(lineBreak("\nGlasses: I wonder where Dr. OtherPerson was?\nRock: I have a good feeling about this trade."));
             notebookText.scrollTop = notebookText.scrollHeight;
             secretCounter(notebookText);
         } else if (inventory.hasOwnProperty('glasses')) {
             notebookText.appendChild(lineBreak("\nGlasses: I wonder where Dr. OtherPerson was?"));
             notebookText.scrollTop = notebookText.scrollHeight;
             secretCounter(notebookText);
-        } 
+        } else if (inventory.hasOwnProperty('rock')) {
+            notebookText.appendChild(lineBreak("\nRock: I have a good feeling about this trade."));
+            notebookText.scrollTop = notebookText.scrollHeight;
+            secretCounter(notebookText);
+        }
     },
     note4() {
         if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('luckyCoin')) {
@@ -1910,27 +1903,32 @@ const notebookConvo = {
         notebookText.scrollTop = notebookText.scrollHeight;
         secretCounter(notebookText);
     },
-    note6() {
-        notebookText.appendChild(lineBreak("\nMagnifying Glass: The door reads 'What does mankind covete the most?'."));
-        notebookText.scrollTop = notebookText.scrollHeight;
-        secretCounter(notebookText);
-    },
-    note7() {
-        notebookText.appendChild(lineBreak("\nMagnifying Glass: This room is centered on this water fountain."));
-        notebookText.scrollTop = notebookText.scrollHeight;
-        secretCounter(notebookText);
-    },
-    note8() {
-        if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('water')) {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: This empty pedestal is begging for the water."));
-            notebookText.scrollTop = notebookText.scrollHeight;
-            secretCounter(notebookText);
-        } else {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: This empty pedestal is missing something."));
-            notebookText.scrollTop = notebookText.scrollHeight;
-            secretCounter(notebookText);
-        }
-    },
+
+    //  TURN THESE INTO DIALOG
+
+    // note6() {
+    //     notebookText.appendChild(lineBreak("\nMagnifying Glass: The door reads 'What does mankind covete the most?'."));
+    //     notebookText.scrollTop = notebookText.scrollHeight;
+    //     secretCounter(notebookText);
+    // },
+    // note7() {
+    //     notebookText.appendChild(lineBreak("\nMagnifying Glass: This room is centered on this water fountain."));
+    //     notebookText.scrollTop = notebookText.scrollHeight;
+    //     secretCounter(notebookText);
+    // },
+    // note8() {
+    //     if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('water')) {
+    //         notebookText.appendChild(lineBreak("\nMagnifying Glass: This empty pedestal is begging for the water."));
+    //         notebookText.scrollTop = notebookText.scrollHeight;
+    //         secretCounter(notebookText);
+    //     } else {
+    //         notebookText.appendChild(lineBreak("\nMagnifying Glass: This empty pedestal is missing something."));
+    //         notebookText.scrollTop = notebookText.scrollHeight;
+    //         secretCounter(notebookText);
+    //     }
+    // },
+
+
     note9() {
         if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('glasses')) {
             notebookText.appendChild(lineBreak("\nGlasses: First wind, then water, this is interesting.\nMagnifying Glass: I'm glad I was given this torch, it is getting really dark."));
@@ -1946,13 +1944,18 @@ const notebookConvo = {
             secretCounter(notebookText);
         }
     },
-    note10() {
-        if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: Extremely happy I have the torch, Lets light these three torches."));
-            notebookText.scrollTop = notebookText.scrollHeight;
-            secretCounter(notebookText);
-        }
-    },
+
+    //  TURN INTO DIALOG
+
+    // note10() {
+    //     if (inventory.hasOwnProperty('magnifyingGlass')) {
+    //         notebookText.appendChild(lineBreak("\nMagnifying Glass: Extremely happy I have the torch, Lets light these three torches."));
+    //         notebookText.scrollTop = notebookText.scrollHeight;
+    //         secretCounter(notebookText);
+    //     }
+    // },
+
+
     note11() {
         if (inventory.hasOwnProperty('glasses')) {
             notebookText.appendChild(lineBreak("\nGlasses: first wind, second water, now fire..."));
@@ -1975,11 +1978,16 @@ const notebookConvo = {
         notebookText.scrollTop = notebookText.scrollHeight;
         secretCounter(notebookText);
     },
-    note15() {
-        notebookText.appendChild(lineBreak("\nMagnifying Glass: We survived with a few scratches. Let us hope that doesn't happen again."));
-        notebookText.scrollTop = notebookText.scrollHeight;
-        secretCounter(notebookText);
-    },
+
+    //  CHANGE INTO GLASSES AND UPDATE DIALOG
+
+    // note15() {
+    //     notebookText.appendChild(lineBreak("\nMagnifying Glass: We survived with a few scratches. Let us hope that doesn't happen again."));
+    //     notebookText.scrollTop = notebookText.scrollHeight;
+    //     secretCounter(notebookText);
+    // },
+
+
     note16() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
             notebookText.appendChild(lineBreak("\nMagnifying Glass: WOW! This corridor is incredible. Who could've thought this temple would be this large?"));
@@ -1996,35 +2004,35 @@ const notebookConvo = {
     },
     note18() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: The fire room is going crazy now!"));
+            notebookText.appendChild(lineBreak("\nMagnifying Glass: The fire room is going crazy now! We need to do something to help this room out!"));
             notebookText.scrollTop = notebookText.scrollHeight;
             secretCounter(notebookText);
         }
     },
     note19() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: The wind has picked up and it has become hard to stand in this room!"));
+            notebookText.appendChild(lineBreak("\nMagnifying Glass: The wind has picked up and it has become hard to stand in this room! We need to do something to help this room out!"));
             notebookText.scrollTop = notebookText.scrollHeight;
             secretCounter(notebookText);
         }
     },
     note20() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: The water has begun gushing into the room!"));
+            notebookText.appendChild(lineBreak("\nMagnifying Glass: The water has begun gushing into the room! We need to do something to help this room out!"));
             notebookText.scrollTop = notebookText.scrollHeight;
             secretCounter(notebookText);
         }
     },
     note21() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: The ground is shaking and some rocks are now falling!"));
+            notebookText.appendChild(lineBreak("\nMagnifying Glass: The ground is shaking and some rocks are now falling! We need to do something to help this room out!"));
             notebookText.scrollTop = notebookText.scrollHeight;
             secretCounter(notebookText);
         }
     },
     note22() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: This must be a key to the last door!"));
+            notebookText.appendChild(lineBreak("\nMagnifying Glass: This must be a key to the last door! It seems to be holding an immense amount of power."));
             notebookText.scrollTop = notebookText.scrollHeight;
             secretCounter(notebookText);
         }
@@ -2038,6 +2046,20 @@ const notebookConvo = {
         notebookText.appendChild(lineBreak("\nGun: This is easy enough.."));
         notebookText.scrollTop = notebookText.scrollHeight;
         secretCounter(notebookText);
+    },
+    note25() {
+        if (inventory.hasOwnProperty('glasses')) {
+            notebookText.appendChild(lineBreak("\nGlasses: That really hurt bad! We are obviously missing something."));
+            notebookText.scrollTop = notebookText.scrollHeight;
+            secretCounter(notebookText);
+        }
+    },
+    note26() {
+        if (inventory.hasOwnProperty('lighter') && inventory.hasOwnProperty('theKey')) {
+            notebookText.appendChild(lineBreak("\nLighter & the Element: You use your lighter to catch the final element on fire and then you throw it at the Dr and the Mercenary."));
+            notebookText.scrollTop = notebookText.scrollHeight;
+            secretCounter(notebookText);
+        }
     },
 }
 
@@ -2065,6 +2087,7 @@ function newHealth(change) {
 //          HIDDEN ABILITIES
 //  APPLE
 function eatingApple() {
+    // DIALOG AND NOTEBOOK
     newHealth(eatApple);
     delete inventory.apple;
     inventoryDiv.removeChild(apple);

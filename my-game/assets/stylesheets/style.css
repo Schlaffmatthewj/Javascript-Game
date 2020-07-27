@@ -344,22 +344,22 @@ label {
 #torch1 {
     width: 75px;
     height: 75px;
-    top: 30%;
-    left: 5%;
+    top: 26%;
+    left: 8%;
 }
 
 #torch2 {
     width: 75px;
     height: 75px;
     top: 32%;
-    left: 31%;
+    left: 33%;
 }
 
 #torch3 {
     width: 75px;
     height: 75px;
     top: 35%;
-    right: 20%;
+    right: 22%;
 }
 
 #reDo1 {
@@ -521,7 +521,7 @@ label {
     border-radius: 20px;
 }
 
-#chapterTwo, #chapterThreeBtn, #fourth, #finalChapterBtn {
+#chapterTwo, #chapThreeBtn, #fourth, #finalChapterBtn {
     background-color: darkgreen;
 }
 
