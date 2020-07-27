@@ -525,6 +525,35 @@ label {
     background-color: darkgreen;
 }
 
+#tradeGun, #noTradeGun, #pourWater, #setWater, #shootBats, #runFromBats, #torchBats, #iHaveBtn, #finEleBtn, #finEleSciBtn, #appCoinBtn, #run50Btn, #finEleGunBtn, #finEleSciGunBtn, #appCoinGunBtn, #run50GunBtn {
+    background-color: lightseagreen;
+}
+
+#firePath, #ridFire {
+    background-color: red;
+    color: black;
+}
+
+#waterPath, #ridWater {
+    background-color: blue;
+    color: black;
+} 
+
+#earthPath, #ridEarth {
+    background-color: green;
+    color: black;
+}
+
+#airPath, #ridWind {
+    background-color: lightblue;
+    color: black;
+}
+
+#finalPath {
+    background-color: black;
+    color: white;
+}
+
 .dialog {
     width: 80%;
     height: 175px;

@@ -161,6 +161,17 @@ middleRoom.setAttribute('id', 'mainroom');
 middleRoom.innerText = 'Main Room';
 middleRoom.addEventListener('click', roomInTheMiddle);
 
+const pour = document.createElement('button');
+pour.setAttribute('class', 'buttons');
+pour.setAttribute('id', 'pourWater');
+pour.innerText = 'Pour Water onto pedestal';
+pour.addEventListener('click', good);
+const set = document.createElement('button');
+pour.setAttribute('id', 'setWater');
+set.setAttribute('class', 'buttons');
+set.innerText = 'Set down gold cup';
+set.addEventListener('click', bad);
+
 const chapterThreeBtn = document.createElement('button');
 chapterThreeBtn.setAttribute('class', 'buttons');
 chapterThreeBtn.setAttribute('id', 'chapThreeBtn');
@@ -594,10 +605,7 @@ function entranceRiddle() {
     pageButtonsDiv.appendChild(ridFire);
     pageButtonsDiv.appendChild(ridWater);
     pageButtonsDiv.appendChild(ridWind);
-    if (inventory.hasOwnProperty("luckyCoin")) {
-        // DIALOG THE RIDDLE SO THERE IS NO PROMPT FOR COIN AND W/O
-        // let repsonse = window.prompt("Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters.", "Ask Bilbo Baggins");
-    }
+    dialogConvo.log84();
 }
 
 function correct() {
@@ -628,9 +636,6 @@ function twoPageFour() {
     board4Drops.appendChild(emptyWater);
     emptyWater.addEventListener('click', placeWater);
     dialogConvo.log30();
-    if (inventory.hasOwnProperty('magnifyingGlass')) {
-        // notebookConvo.note6();
-    }
 }
 
 function roomInTheMiddle() {
@@ -639,9 +644,7 @@ function roomInTheMiddle() {
     }
     board4Img.style.backgroundImage = "url('./assets/imgs/first-middle.jpeg')";
     if (inventory.hasOwnProperty('emptyWater')) {
-        while (pageButtonsDiv.firstChild) {
-            pageButtonsDiv.removeChild(pageButtonsDiv.lastChild);
-        };
+        pageButtonsDiv.innerHTML = '';
         delete inventory.emptyWater;
         board4Drops.removeChild(emptyWater);
         pageButtonsDiv.appendChild(chapterThreeBtn);
@@ -658,14 +661,11 @@ function roomOnTheLeft() {
         emptyWater.style.display = "none";
     }
     board4Img.style.backgroundImage = "url('./assets/imgs/first-left.jpeg')";
-    if (inventory.hasOwnProperty('magnifyingGlass')) {
-        // notebookConvo.note7();
-        dialogConvo.log36();
-    }
+    dialogConvo.log36();
 }
 
 function roomOnTheRight() {
-    dialogConvo.log83();
+    dialogConvo.log37();
     if (firstFloorItems.hasOwnProperty('water')) {
         water.style.display = "none";
     }
@@ -673,10 +673,6 @@ function roomOnTheRight() {
         emptyWater.style.display = "inline-block";
     }
     board4Img.style.backgroundImage = "url('./assets/imgs/first-right.jpeg')";
-    if (inventory.hasOwnProperty('magnifyingGlass')) {
-        // notebookConvo.note8();
-        dialogConvo.log37();
-    }
 }
 
 function grabWater() {
@@ -692,32 +688,40 @@ function grabWater() {
 }
 
 function placeWater() {
-    if (inventory.hasOwnProperty('water')) {
-        const rmvBtnLeft = document.querySelector('#rightroom');
-        rmvBtnLeft.removeEventListener('click', roomOnTheRight);
-        emptyWater.appendChild(water);
-        emptyWater.style.backgroundColor = 'rgba(0,0,0,0)'
-        inventory.emptyWater = emptyWater;
-        delete inventory.water;
-        setTimeout(() => {
-            roomInTheMiddle();
-        }, 3000);
+    pageButtonsDiv.innerHTML = '';
+    dialogConvo.log86();
+    pageButtonsDiv.appendChild(pour);
+    pageButtonsDiv.appendChild(set);
+}
+
+function good() {
+    const rmvBtnLeft = document.querySelector('#rightroom');
+    emptyWater.appendChild(water);
+    emptyWater.style.backgroundColor = 'rgba(0,0,0,0)'
+    inventory.emptyWater = emptyWater;
+    delete inventory.water;
+    setTimeout(() => {
+        roomInTheMiddle();
+    }, 1000);
+}
+
+function bad() {
+    dialogConvo.log34();
+    if (inventory.hasOwnProperty('glasses')) {
+        notebookConvo.note5();
+        dialogConvo.log33();
     } else {
-        dialogConvo.log34();
-        if (inventory.hasOwnProperty('glasses')) {
-            notebookConvo.note5();
-            dialogConvo.log33();
-        } else {
-            newHealth(medDam);
-        }
+        newHealth(medDam);
     }
 }
 
 //          CHAPTER THREE
 function chapterThree() {
+    dialogBoxDiv.innerText = '';
     chapterThreeBtn.removeEventListener('click', chapterThree);
     pageButtonsDiv.removeChild(chapterThreeBtn);
     board4Img.style.backgroundImage = "url('./assets/imgs/secondFloor.jpeg')";
+    dialogConvo.log85();
     dialogConvo.log31();
     notebookConvo.note9();
     pageButtonsDiv.appendChild(torchRoom);
@@ -728,7 +732,6 @@ function inTorchRoom() {
     torchRoom.removeEventListener('click', inTorchRoom);
     pageButtonsDiv.removeChild(torchRoom);
     dialogConvo.log32();
-    // notebookConvo.note10();
     for (let toRches in dark) {
         dark[toRches].style.display = "inline-block";
         dark[toRches].addEventListener('click', (event) => countTorches(event, toRches));
@@ -742,7 +745,7 @@ function inTorchRoom() {
                     board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
                     setTimeout(() => {
                         threePageThree();
-                    }, 3000);
+                    }, 2000);
                 } else {
                     dialogConvo.log38();
                 }
@@ -754,7 +757,7 @@ function inTorchRoom() {
                     board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
                     setTimeout(() => {
                         threePageThree();
-                    }, 3000);
+                    }, 2000);
                 } else {
                     dialogConvo.log38();
                 }
@@ -766,7 +769,7 @@ function inTorchRoom() {
                     board4Img.style.backgroundImage = "url('./assets/imgs/lit.png')"
                     setTimeout(() => {
                         threePageThree();
-                    }, 3000);
+                    }, 2000);
                 } else {
                     dialogConvo.log38();
                 }
@@ -787,8 +790,8 @@ function threePageThree() {
             }
             pageButtonsDiv.appendChild(useTorch);
             pageButtonsDiv.appendChild(youRun);
-        }, 3000);
-    }, 3000);
+        }, 2000);
+    }, 1000);
 }
 
 function batGun() {
@@ -827,8 +830,8 @@ function batRun() {
 }
 
 function reDoTorches() {
-    if (inventory.hasOwnProperty('magnifyingGlass')) {
-        // notebookConvo.note15();
+    if (inventory.hasOwnProperty('glasses')) {
+        notebookConvo.note15();
         dialogConvo.log46();
     }
     pageButtonsDiv.innerHTML = '';
@@ -897,10 +900,8 @@ function chapterFour(){
     board4Img.style.backgroundImage = "url('./assets/imgs/third-first.png')";
     dialogConvo.log49();
     setTimeout(() => {
-        dialogConvo.log48();
-        notebookConvo.note16();
-        dialogConvo.log69();
         board4Img.style.backgroundImage = "url('./assets/imgs/corridor.jpeg')";
+        dialogConvo.log48();
         setTimeout(() => {
             pageButtonsDiv.appendChild(fire);
             pageButtonsDiv.appendChild(waterWay);
@@ -1150,8 +1151,8 @@ function getKey(event) {
             newHealth(dam);
         }
     } else if (event.target === eleWaterDrop) {
-        pageButtonsDiv.innerHTML = '';
         if (inventory.hasOwnProperty('theWind')) {
+            pageButtonsDiv.innerHTML = '';
             fire.removeEventListener('click', wayOfWater);
             dialogConvo.log59();
             elementDropCount += 1;
@@ -1179,8 +1180,8 @@ function getKey(event) {
             newHealth(dam);
         }
     } else if (event.target === eleEarthDrop) {
-        pageButtonsDiv.innerHTML = '';
         if (inventory.hasOwnProperty('theFire')) {
+            pageButtonsDiv.innerHTML = '';
             fire.removeEventListener('click', wayOfEarth);
             dialogConvo.log60();
             elementDropCount += 1;
@@ -1461,8 +1462,17 @@ function youVeWon() {
                                                         board4Img.style.backgroundImage = "url('./assets/imgs/the-office.jpeg')";
                                                         scientist2.style.display = 'inline-block';
                                                         setTimeout(() => {
-                                                            alert('YOUVE DONE IT! You and the scientist escaped.');
-                                                            location.reload();
+                                                            if (inventory.hasOwnProperty('theKey')) {
+                                                                alert("DOUBLELY AWESOME!!! You've made it back with the Elemental key! Now we can study it without Dr. OtherPerson");
+                                                                setTimeout(() => {
+                                                                    location.reload();
+                                                                }, 2000);
+                                                            } else {
+                                                                alert('YOUVE DONE IT! You and the scientist escaped.');
+                                                                setTimeout(() => {
+                                                                    location.reload();
+                                                                }, 2000);
+                                                            }
                                                         }, 5000);
                                                     }, 2000)
                                                 }, 2000);
@@ -1604,7 +1614,7 @@ const dialogConvo = {
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log30() {
-        dialogBoxDiv.appendChild(lineBreak("\nThe next door will not open either. It says something about what does mankind covete? It looks like there is a room on my right and one more on my left."));
+        dialogBoxDiv.appendChild(lineBreak("\nThe next door will not open either. The door reads 'What does mankind covete the most?'"));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log31() {
@@ -1620,10 +1630,8 @@ const dialogConvo = {
         }
     },
     log32() {
-        if (inventory.hasOwnProperty('magnifyingGlass')) {
-            dialogBoxDiv.appendChild(lineBreak("\nMagnifying Glass: Extremely happy I have the torch, Lets light these three torches."));
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-        }
+        dialogBoxDiv.appendChild(lineBreak("\nExtremely happy I have the torch, Lets light these three torches."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     // FOR ALL GLASSES DAMAGE PREVENTION
     log33() {
@@ -1640,17 +1648,18 @@ const dialogConvo = {
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log36() {
-        dialogBoxDiv.appendChild(lineBreak("\nMagnifying Glass: This room is centered on this water fountain."));
+        dialogBoxDiv.appendChild(lineBreak("\nThis room is centered on this water fountain."));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log37() {
-        if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('water')) {
-            dialogBoxDiv.appendChild(lineBreak("\nMagnifying Glass: This empty pedestal is begging for the water."));
+        if (inventory.hasOwnProperty('water')) {
+            dialogBoxDiv.appendChild(lineBreak("\nThis empty pedestal is begging for the water."));
             dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
         } else {
-            dialogBoxDiv.appendChild(lineBreak("\nMagnifying Glass: This empty pedestal is missing something."));
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+            dialogConvo.log83();
         }
+        dialogBoxDiv.appendChild(lineBreak("\nThis empty pedestal is missing something."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log38() {
         dialogBoxDiv.appendChild(lineBreak("\nThat worked! let's light another one."));
@@ -1685,7 +1694,7 @@ const dialogConvo = {
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log46() {
-        dialogBoxDiv.appendChild(lineBreak("\nMagnifying Glass: We survived with a few scratches. Let us hope that doesn't happen again."));
+        dialogBoxDiv.appendChild(lineBreak("\nGlasses: We survived with a few scratches. Let us hope that doesn't happen again."));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log47() {
@@ -1693,10 +1702,8 @@ const dialogConvo = {
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log48() {
-        if (inventory.hasOwnProperty('magnifyingGlass')) {
-            dialogBoxDiv.appendChild(lineBreak("\nMagnifying Glass: WOW! This corridor is incredible. Who could've thought this temple would be this large?"));
-            dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
-        }
+        dialogBoxDiv.appendChild(lineBreak("\nWOW! This corridor is incredible. Who could've thought this temple would be this large?"));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
     },
     log49() {
         dialogBoxDiv.appendChild(lineBreak("\nFurther into the Depths of the Temple, this next room looks to be massive!"));
@@ -1850,6 +1857,18 @@ const dialogConvo = {
         dialogBoxDiv.appendChild(lineBreak("\nThis room looks rather empty, other than that pedestal."));
         dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight; 
     },
+    log84() {
+        dialogBoxDiv.appendChild(lineBreak("\nThe riddle on the door reads: Voiceless it cries, Wingless flutters, Toothless bites, Mouthless mutters."));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight;
+    },
+    log85() {
+        dialogBoxDiv.appendChild(lineBreak("\nWell this all seems easy enough.. Hopefully things don't take a turn for the worse"));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight; 
+    },
+    log86() {
+        dialogBoxDiv.appendChild(lineBreak("\nWhich should we do?"));
+        dialogBoxDiv.scrollTop = dialogBoxDiv.scrollHeight; 
+    },
 }
 
 
@@ -1888,7 +1907,7 @@ const notebookConvo = {
     },
     note4() {
         if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('luckyCoin')) {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: I believe I've seen a movie with a similar riddle likes this.\nLucky Coin: This reminded you of a movie you watched with a similar riddle!"));
+            notebookText.appendChild(lineBreak("\nMagnifying Glass: I believe I've seen a movie with a similar riddle likes this.\nLucky Coin: This reminded you of that movie you watched with a similar riddle! Ask Bilbo Baggins..."));
             notebookText.scrollTop = notebookText.scrollHeight;
             secretCounter(notebookText);
         } else if (inventory.hasOwnProperty('magnifyingGlass')) {
@@ -1903,32 +1922,6 @@ const notebookConvo = {
         notebookText.scrollTop = notebookText.scrollHeight;
         secretCounter(notebookText);
     },
-
-    //  TURN THESE INTO DIALOG
-
-    // note6() {
-    //     notebookText.appendChild(lineBreak("\nMagnifying Glass: The door reads 'What does mankind covete the most?'."));
-    //     notebookText.scrollTop = notebookText.scrollHeight;
-    //     secretCounter(notebookText);
-    // },
-    // note7() {
-    //     notebookText.appendChild(lineBreak("\nMagnifying Glass: This room is centered on this water fountain."));
-    //     notebookText.scrollTop = notebookText.scrollHeight;
-    //     secretCounter(notebookText);
-    // },
-    // note8() {
-    //     if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('water')) {
-    //         notebookText.appendChild(lineBreak("\nMagnifying Glass: This empty pedestal is begging for the water."));
-    //         notebookText.scrollTop = notebookText.scrollHeight;
-    //         secretCounter(notebookText);
-    //     } else {
-    //         notebookText.appendChild(lineBreak("\nMagnifying Glass: This empty pedestal is missing something."));
-    //         notebookText.scrollTop = notebookText.scrollHeight;
-    //         secretCounter(notebookText);
-    //     }
-    // },
-
-
     note9() {
         if (inventory.hasOwnProperty('magnifyingGlass') && inventory.hasOwnProperty('glasses')) {
             notebookText.appendChild(lineBreak("\nGlasses: First wind, then water, this is interesting.\nMagnifying Glass: I'm glad I was given this torch, it is getting really dark."));
@@ -1944,18 +1937,6 @@ const notebookConvo = {
             secretCounter(notebookText);
         }
     },
-
-    //  TURN INTO DIALOG
-
-    // note10() {
-    //     if (inventory.hasOwnProperty('magnifyingGlass')) {
-    //         notebookText.appendChild(lineBreak("\nMagnifying Glass: Extremely happy I have the torch, Lets light these three torches."));
-    //         notebookText.scrollTop = notebookText.scrollHeight;
-    //         secretCounter(notebookText);
-    //     }
-    // },
-
-
     note11() {
         if (inventory.hasOwnProperty('glasses')) {
             notebookText.appendChild(lineBreak("\nGlasses: first wind, second water, now fire..."));
@@ -1978,22 +1959,10 @@ const notebookConvo = {
         notebookText.scrollTop = notebookText.scrollHeight;
         secretCounter(notebookText);
     },
-
-    //  CHANGE INTO GLASSES AND UPDATE DIALOG
-
-    // note15() {
-    //     notebookText.appendChild(lineBreak("\nMagnifying Glass: We survived with a few scratches. Let us hope that doesn't happen again."));
-    //     notebookText.scrollTop = notebookText.scrollHeight;
-    //     secretCounter(notebookText);
-    // },
-
-
-    note16() {
-        if (inventory.hasOwnProperty('magnifyingGlass')) {
-            notebookText.appendChild(lineBreak("\nMagnifying Glass: WOW! This corridor is incredible. Who could've thought this temple would be this large?"));
-            notebookText.scrollTop = notebookText.scrollHeight;
-            secretCounter(notebookText);
-        }
+    note15() {
+        notebookText.appendChild(lineBreak("\nGlasses: We survived with a few scratches. Let us hope that doesn't happen again."));
+        notebookText.scrollTop = notebookText.scrollHeight;
+        secretCounter(notebookText);
     },
     note17() {
         if (inventory.hasOwnProperty('magnifyingGlass')) {
