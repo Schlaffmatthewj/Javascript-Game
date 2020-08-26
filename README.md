@@ -1,7 +1,7 @@
 # Javascript-Game
 
 this is my first project for my SEI course for GA
-<a href='https://schlaffmatthewj.github.io/Javascript-Game/my-game/index.html'>New Adventure</a>
+<a href='https://schlaffmatthewj.github.io/Javascript-Game/my-game/index.html'>New Adventures</a>
 
 <p>
   <h4>Photo Credits</h4>
